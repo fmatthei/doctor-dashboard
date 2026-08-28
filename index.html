@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doctor Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Doctor Dashboard">
+<style>
+
+  :root{
+    --ground:#F1F3F2;
+    --surface:#FFFFFF;
+    --ink:#141A18;
+    --soft-ink:#5B6663;
+    --rules:#D5DAD8;
+    --accent:#0F5C4E;
+    --accent-wash:#0F5C4E14;
+    --warn:#B26A00;
+    --warn-wash:#B26A0014;
+    --critical:#A32B22;
+    --critical-wash:#A32B2214;
+    --info:#2C5C8A;
+    --info-wash:#2C5C8A14;
+    --followup:#7A4569;
+    --followup-wash:#7A456914;
+    --shadow: 0 1px 2px rgba(20,26,24,0.06), 0 4px 14px rgba(20,26,24,0.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ground:#0E1412;
+      --surface:#161E1B;
+      --ink:#E6EBE8;
+      --soft-ink:#8FA39C;
+      --rules:#28322E;
+      --accent:#3DA890;
+      --accent-wash:#3DA89022;
+      --warn:#E0A040;
+      --warn-wash:#E0A04022;
+      --critical:#E8695C;
+      --critical-wash:#E8695C22;
+      --info:#6FA8DC;
+      --info-wash:#6FA8DC22;
+      --followup:#D89CC2;
+      --followup-wash:#D89CC222;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 18px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E1412;
+    --surface:#161E1B;
+    --ink:#E6EBE8;
+    --soft-ink:#8FA39C;
+    --rules:#28322E;
+    --accent:#3DA890;
+    --accent-wash:#3DA89022;
+    --warn:#E0A040;
+    --warn-wash:#E0A04022;
+    --critical:#E8695C;
+    --critical-wash:#E8695C22;
+    --info:#6FA8DC;
+    --info-wash:#6FA8DC22;
+    --followup:#D89CC2;
+    --followup-wash:#D89CC222;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 18px rgba(0,0,0,0.35);
+  }
+  :root[data-theme="light"]{
+    --ground:#F1F3F2;
+    --surface:#FFFFFF;
+    --ink:#141A18;
+    --soft-ink:#5B6663;
+    --rules:#D5DAD8;
+    --accent:#0F5C4E;
+    --accent-wash:#0F5C4E14;
+    --warn:#B26A00;
+    --warn-wash:#B26A0014;
+    --critical:#A32B22;
+    --critical-wash:#A32B2214;
+    --info:#2C5C8A;
+    --info-wash:#2C5C8A14;
+    --followup:#7A4569;
+    --followup-wash:#7A456914;
+    --shadow: 0 1px 2px rgba(20,26,24,0.06), 0 4px 14px rgba(20,26,24,0.05);
+  }
+
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:'Archivo',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; letter-spacing:-0.01em;}
+
+  .app{
+    max-width:660px;
+    margin:0 auto;
+    min-height:100vh;
+    background:var(--ground);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    padding-bottom:76px;
+  }
+
+  /* ===== Header ===== */
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background:var(--ground);
+    padding:16px 16px 10px;
+    border-bottom:1px solid var(--rules);
+  }
+  .brandrow{display:flex; align-items:baseline; justify-content:space-between; gap:10px;}
+  .brand{font-weight:800; font-size:19px; letter-spacing:-0.01em;}
+  .brand .dot{color:var(--accent);}
+  .themebtn{
+    border:1px solid var(--rules); background:var(--surface); color:var(--soft-ink);
+    border-radius:20px; padding:5px 11px; font-size:11px; font-family:'IBM Plex Mono',monospace;
+    cursor:pointer;
+  }
+  .synced{
+    margin-top:4px; font-size:11.5px; color:var(--soft-ink);
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .stalewarn{
+    margin-top:10px; padding:9px 12px; border-radius:10px;
+    background:var(--warn-wash); border:1px solid var(--warn);
+    color:var(--warn); font-size:12.5px; display:flex; gap:8px; align-items:flex-start;
+  }
+
+
+
+
+
+
+
+}
+
+  main{flex:1; padding:14px 16px 20px;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block; animation:fade .18s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(3px);} to{opacity:1; transform:none;}}
+
+  /* ===== Section groups ===== */
+  .group{margin-bottom:22px;}
+  .group-title{
+    font-size:11.5px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--soft-ink); font-weight:600; margin:0 0 8px 2px;
+    display:flex; align-items:center; gap:6px;
+  }
+  .group-count{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    background:var(--rules); color:var(--soft-ink); padding:1px 6px; border-radius:8px;
+  }
+
+  /* ===== Row card ===== */
+  .row{
+    background:var(--surface);
+    border-radius:12px;
+    padding:13px 14px 13px 12px;
+    margin-bottom:8px;
+    box-shadow:var(--shadow);
+    border-left:4px solid var(--rules);
+    cursor:pointer;
+    position:relative;
+    transition:transform .1s ease;
+  }
+  .row:active{transform:scale(0.995);}
+  .row.state-overdue{border-left-color:var(--critical);}
+  .row.state-didyougo{border-left-color:var(--warn);}
+  .row.state-booked{border-left-color:var(--accent);}
+  .row.state-bookedlate{border-left-color:var(--info);}
+  .row.state-booknow{border-left-color:var(--warn);}
+  .row.state-ontrack{border-left-color:var(--rules);}
+  .row.state-asneeded{border-left-color:var(--rules);}
+  .row.snoozed{opacity:0.5;}
+
+  .row-top{display:flex; justify-content:space-between; align-items:flex-start; gap:8px;}
+  .row-name{font-weight:700; font-size:15px; line-height:1.25;}
+  .row-sub{font-size:12px; color:var(--soft-ink); margin-top:1px;}
+  .chip{
+    font-size:11px; font-weight:600; padding:3px 9px; border-radius:20px;
+    white-space:nowrap; flex-shrink:0; letter-spacing:.01em;
+  }
+  .chip-filled.c-critical{background:var(--critical); color:#fff;}
+  .chip-filled.c-warn{background:var(--warn); color:#fff;}
+  .chip-filled.c-accent{background:var(--accent); color:#fff;}
+  .chip-filled.c-info{background:var(--info); color:#fff;}
+  .chip-outline{background:transparent; border:1.4px solid var(--rules); color:var(--soft-ink);}
+  .chip-outline.c-warn{border-color:var(--warn); color:var(--warn);}
+  .chip-outline.pulse{animation:pulse 2.2s ease-in-out infinite;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 var(--warn-wash);}
+    50%{box-shadow:0 0 0 5px var(--warn-wash);}
+  }
+
+  .row-reason{font-size:12.5px; color:var(--ink); margin-top:7px; line-height:1.4;}
+
+  .badges{display:flex; flex-wrap:wrap; gap:5px; margin-top:8px;}
+  .badge{
+    font-size:10px; padding:2px 7px; border-radius:6px; font-weight:600;
+    background:var(--ground); color:var(--soft-ink); border:1px solid var(--rules);
+  }
+  .badge.followup{background:var(--followup-wash); color:var(--followup); border-color:var(--followup);}
+
+  /* ===== Gauge ===== */
+  .gauge{margin-top:10px;}
+  .gauge-track{
+    position:relative; height:6px; border-radius:4px; background:var(--rules);
+    overflow:visible;
+  }
+  .gauge-fill{
+    position:absolute; top:0; left:0; height:100%; border-radius:4px;
+  }
+  .gauge-hatch{
+    position:absolute; top:0; height:100%; border-radius:0 4px 4px 0;
+    background-image:repeating-linear-gradient(45deg, var(--hc) 0 3px, transparent 3px 6px);
+    opacity:0.9;
+  }
+  .gauge-tick{
+    position:absolute; top:-2px; width:2px; height:10px; background:var(--ink); opacity:0.35;
+  }
+  .gauge-labels{
+    display:flex; justify-content:space-between; margin-top:4px;
+    font-size:10px; color:var(--soft-ink);
+  }
+  .gauge-labels .mid{font-weight:600;}
+
+  .previsit{
+    margin-top:9px; padding:8px 10px; border-radius:8px;
+    background:var(--info-wash); border:1px dashed var(--info); font-size:11.5px; color:var(--info);
+  }
+
+  /* ===== Specialties / History list items ===== */
+  .simple-row{
+    background:var(--surface); border-radius:10px; padding:11px 13px; margin-bottom:7px;
+    box-shadow:var(--shadow); display:flex; justify-content:space-between; align-items:center; gap:10px;
+    cursor:pointer;
+  }
+  .simple-row .l{font-weight:600; font-size:13.5px;}
+  .simple-row .r{font-size:11px; color:var(--soft-ink); font-family:'IBM Plex Mono',monospace;}
+  .subhead{
+    font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--soft-ink);
+    font-weight:600; margin:20px 2px 8px; padding-top:6px; border-top:1px solid var(--rules);
+  }
+  .subhead:first-child{border-top:none; margin-top:0;}
+
+  .year-block{margin-bottom:18px;}
+  .year-label{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px; margin:0 0 8px 2px; color:var(--accent);}
+  .visit-row{
+    background:var(--surface); border-radius:10px; padding:11px 13px; margin-bottom:6px; box-shadow:var(--shadow);
+  }
+  .visit-date{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--soft-ink);}
+  .visit-name{font-weight:700; font-size:13.5px; margin-top:2px;}
+  .visit-reason{font-size:12px; color:var(--soft-ink); margin-top:3px; line-height:1.4;}
+  .visit-amount{font-family:'IBM Plex Mono',monospace; font-size:11px; margin-top:4px; color:var(--ink);}
+
+  /* ===== Setup ===== */
+  .setup-card{
+    background:var(--surface); border-radius:12px; padding:14px; margin-bottom:12px; box-shadow:var(--shadow);
+  }
+  .setup-card h3{margin:0 0 8px; font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--soft-ink);}
+  .setup-line{display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-bottom:1px solid var(--rules); font-size:12.5px;}
+  .setup-line:last-child{border-bottom:none;}
+  .setup-line .k{color:var(--soft-ink);}
+  .setup-line .v{font-family:'IBM Plex Mono',monospace; text-align:right;}
+  .setup-btns{display:flex; gap:8px; margin-top:4px;}
+  .btn{
+    flex:1; padding:10px; border-radius:9px; border:1px solid var(--rules); background:var(--surface);
+    color:var(--ink); font-family:'Archivo',sans-serif; font-weight:600; font-size:12.5px; cursor:pointer;
+  }
+  .btn:active{background:var(--ground);}
+  .btn.copied{border-color:var(--accent); color:var(--accent);}
+
+  /* ===== CTA card ===== */
+  .cta-card{
+    background:var(--accent-wash); border:1px solid var(--accent); border-radius:12px; padding:14px;
+    margin-top:6px;
+  }
+  .cta-card h4{margin:0 0 6px; font-size:12.5px; color:var(--accent); text-transform:uppercase; letter-spacing:.05em;}
+  .cta-card p{margin:0 0 8px; font-size:12px; color:var(--soft-ink);}
+  .cta-ex{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; background:var(--surface);
+    border-radius:7px; padding:7px 9px; margin-bottom:6px; color:var(--ink);
+  }
+  .cta-ex:last-child{margin-bottom:0;}
+
+  .empty{
+    text-align:center; padding:30px 10px; color:var(--soft-ink); font-size:13px;
+  }
+
+  /* ===== Bottom sheet ===== */
+  .sheet-backdrop{
+    position:fixed; inset:0; background:rgba(10,14,13,0.45); z-index:40;
+    opacity:0; pointer-events:none; transition:opacity .2s ease;
+  }
+  .sheet-backdrop.open{opacity:1; pointer-events:auto;}
+  .sheet{
+    position:fixed; left:50%; bottom:0; transform:translate(-50%, 100%);
+    width:100%; max-width:660px; max-height:82vh; overflow-y:auto;
+    background:var(--surface); border-radius:18px 18px 0 0; z-index:41;
+    padding:10px 18px 26px; box-shadow:0 -8px 30px rgba(0,0,0,0.25);
+    transition:transform .25s cubic-bezier(.2,.8,.2,1);
+  }
+  .sheet.open{transform:translate(-50%,0);}
+  .sheet-handle{width:36px; height:4px; background:var(--rules); border-radius:3px; margin:4px auto 14px;}
+  .sheet h2{margin:0; font-size:19px;}
+  .sheet .sub{font-size:12.5px; color:var(--soft-ink); margin-top:2px;}
+  .sheet-section{margin-top:16px;}
+  .sheet-section h4{
+    margin:0 0 8px; font-size:11px; text-transform:uppercase; letter-spacing:.07em; color:var(--soft-ink);
+  }
+  .kv{display:flex; justify-content:space-between; padding:5px 0; font-size:13px; border-bottom:1px solid var(--rules);}
+  .kv:last-child{border:none;}
+  .kv .k{color:var(--soft-ink);}
+  .kv .v{font-weight:600; text-align:right;}
+  .sheet-note{font-size:12.5px; line-height:1.5; color:var(--ink); background:var(--ground); padding:10px; border-radius:9px;}
+  .close-x{
+    position:absolute; top:14px; right:16px; width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--rules); background:var(--surface); color:var(--soft-ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:15px;
+  }
+
+  /* ===== Tab bar ===== */
+  nav.tabbar{
+    position:fixed; bottom:0; left:50%; transform:translateX(-50%);
+    width:100%; max-width:660px; background:var(--surface);
+    border-top:1px solid var(--rules); display:flex; z-index:30;
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
+  .tab{
+    flex:1; border:none; background:none; padding:11px 4px 9px; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    color:var(--soft-ink); font-family:'Archivo',sans-serif; font-size:10.5px; font-weight:600;
+    letter-spacing:.03em; position:relative;
+  }
+  .tab.active{color:var(--accent);}
+  .tab svg{width:20px; height:20px;}
+  .tab-badge{
+    position:absolute; top:4px; right:calc(50% - 20px);
+    background:var(--critical); color:#fff; font-size:9.5px; font-weight:700;
+    min-width:15px; height:15px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    padding:0 3px; font-family:'IBM Plex Mono',monospace;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+
+  .loading-screen{
+    position:fixed; inset:0; background:var(--ground);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    z-index:100; gap:16px; transition:opacity 0.3s ease;
+  }
+  .loading-screen.done{opacity:0; pointer-events:none;}
+  .loading-spinner{
+    width:28px; height:28px; border:3px solid var(--rules);
+    border-top-color:var(--accent); border-radius:50%;
+    animation:lspin 0.8s linear infinite;
+  }
+  @keyframes lspin{to{transform:rotate(360deg);}}
+  .loading-text{font-size:13px; color:var(--soft-ink);}
+  .loading-error{
+    text-align:center; padding:20px; max-width:320px;
+  }
+  .loading-error h2{color:var(--critical); font-size:16px; margin:0 0 8px;}
+  .loading-error p{color:var(--soft-ink); font-size:13px; line-height:1.5; margin:0 0 14px;}
+  .loading-error button{
+    padding:10px 20px; border-radius:9px; border:1.5px solid var(--critical);
+    background:var(--surface); color:var(--critical); font-weight:700;
+    font-family:'Archivo',sans-serif; font-size:13px; cursor:pointer;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Loading from GitHub…</div>
+</div>
+
+<div class="app">
+
+  <header class="top">
+    <div class="brandrow">
+      <div class="brand">Doctor <span class="dot">·</span> Dashboard</div>
+      <button class="themebtn" id="themeToggle">Dark</button>
+    </div>
+    <div class="synced mono" id="syncedLine"></div>
+    <div class="stalewarn" id="staleWarn" style="display:none;">
+      <span>⚠</span>
+      <span>This snapshot may be stale. Ask Claude to refresh and republish the dashboard.</span>
+    </div>
+
+  </header>
+
+  <main>
+    <section class="tabpanel active" id="tab-now"></section>
+    <section class="tabpanel" id="tab-specialties"></section>
+    <section class="tabpanel" id="tab-history"></section>
+    <section class="tabpanel" id="tab-setup"></section>
+  </main>
+
+  <nav class="tabbar">
+    <button class="tab active" data-tab="now">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      NOW
+      <span class="tab-badge" id="nowBadge" style="display:none;"></span>
+    </button>
+    <button class="tab" data-tab="specialties">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h9a2 2 0 0 1 2 2v13a1 1 0 0 1-1.5.86L12 17l-3.5 2.86A1 1 0 0 1 7 19V6a2 2 0 0 1-1-2Z"/><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2"/></svg>
+      SPECIALTIES
+    </button>
+    <button class="tab" data-tab="history">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l4 2"/></svg>
+      HISTORY
+    </button>
+    <button class="tab" data-tab="setup">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+      SETUP
+    </button>
+  </nav>
+</div>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="sheet" id="sheet"><div class="sheet-handle"></div><div class="close-x" id="sheetClose">✕</div><div id="sheetContent"></div></div>
+
+<script>
+const GIST_URL = "https://gist.githubusercontent.com/fmatthei/e456b8a03df2c92ddec907ea977466bc/raw/state.json";
+let DATA = null;
+
+async function loadData() {
+  const ls = document.getElementById('loadingScreen');
+  try {
+    const cacheBust = '?t=' + Date.now();
+    const resp = await fetch(GIST_URL + cacheBust);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    DATA = await resp.json();
+    ls.classList.add('done');
+    setTimeout(() => ls.remove(), 400);
+    initHeader();
+    renderNow();
+    renderSpecialties();
+    renderHistory();
+    renderSetup();
+  } catch(err) {
+    console.error('Load failed:', err);
+    ls.innerHTML = `
+      <div class="loading-error">
+        <h2>Could not load data</h2>
+        <p>Failed to fetch the latest state from GitHub.<br>
+        ${String(err.message||err).slice(0,100)}</p>
+        <button onclick="location.reload()">Retry</button>
+      </div>`;
+  }
+}
+
+
+/* ================= DATE ENGINE ================= */
+function anchorDate(s){ return new Date(s + "T12:00:00"); }
+function fmtISO(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function addMonths(d, months){
+  const nd = new Date(d.getTime());
+  nd.setMonth(nd.getMonth()+months);
+  return nd;
+}
+function daysBetween(a,b){ return Math.round((b - a) / 86400000); }
+function fmtShort(d){
+  return d.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+}
+function todayNoon(){
+  const now = new Date();
+  return anchorDate(fmtISO(now));
+}
+const TODAY = todayNoon();
+
+/* ================= STATUS ENGINE ================= */
+function computeStatus(item){
+  const lastVisit = anchorDate(item.lastVisit);
+  const snoozed = item.snoozeUntil && anchorDate(item.snoozeUntil) > TODAY;
+
+  if (item.cadenceMonths === null && !item.followUp){
+    return {state:'asneeded', snoozed, lastVisit, due:null, leadDays:null};
+  }
+
+  let due;
+  if (item.followUp && item.followUp.date){
+    due = anchorDate(item.followUp.date);
+  } else {
+    due = addMonths(lastVisit, item.cadenceMonths);
+  }
+
+  let leadDays;
+  if (item.leadDaysOverride !== null && item.leadDaysOverride !== undefined){
+    leadDays = item.leadDaysOverride;
+  } else if (item.cadenceMonths){
+    leadDays = Math.min(Math.round(item.cadenceMonths * 30.44 * 0.25), 90);
+  } else {
+    leadDays = 30;
+  }
+
+  let state, overdueDays=0, lateDays=0;
+  if (item.booked){
+    const bookedDate = anchorDate(item.booked);
+    if (bookedDate < TODAY){
+      state = 'didyougo';
+    } else if (bookedDate <= due){
+      state = 'booked';
+    } else {
+      state = 'bookedlate';
+      lateDays = daysBetween(due, bookedDate);
+    }
+  } else {
+    if (TODAY > due){
+      state = 'overdue';
+      overdueDays = daysBetween(due, TODAY);
+    } else if (daysBetween(TODAY, due) <= leadDays){
+      state = 'booknow';
+    } else {
+      state = 'ontrack';
+    }
+  }
+
+  return {state, snoozed, lastVisit, due, leadDays, overdueDays, lateDays};
+}
+
+function computeBadges(item, status){
+  const badges = [];
+  if (item.cadenceConfirmed === false) badges.push({label:'Cadence unconfirmed', cls:''});
+  if (!item.doctor) badges.push({label:'No doctor assigned', cls:''});
+  if (item.followUp && item.followUp.active) badges.push({label:'Routine paused', cls:''});
+  if (item.kind === 'exam' && item.parentId){
+    const parent = DATA.items.find(i=>i.id===item.parentId);
+    if (parent) badges.push({label:`Exam · ${parent.name}`, cls:''});
+  }
+  if (item.followUp && item.followUp.date && status.state !== 'booked' && status.state !== 'bookedlate' && status.state !== 'didyougo'){
+    badges.push({label: item.followUp.kind === 'date' ? 'Date set' : 'Follow-up', cls:'followup'});
+  }
+  return badges;
+}
+
+const STATE_META = {
+  overdue:   {label:'Overdue',      cls:'chip-filled c-critical'},
+  didyougo:  {label:'Did you go?',  cls:'chip-filled c-warn'},
+  booked:    {label:'Booked',       cls:'chip-filled c-accent'},
+  bookedlate:{label:'Booked late',  cls:'chip-filled c-info'},
+  booknow:   {label:'Book now',     cls:'chip-outline c-warn pulse'},
+  ontrack:   {label:'On track',     cls:'chip-outline'},
+  asneeded:  {label:'As needed',    cls:'chip-outline'},
+};
+
+function reasonText(item, status){
+  switch(status.state){
+    case 'overdue': return `Due ${fmtShort(status.due)} — ${status.overdueDays} day${status.overdueDays===1?'':'s'} past due. Nothing booked yet.`;
+    case 'didyougo': return `Booked for ${fmtShort(anchorDate(item.booked))}, which has passed. Did the visit happen?`;
+    case 'booked': return `Booked for ${fmtShort(anchorDate(item.booked))}, on schedule for the ${item.cadenceMonths}-month rhythm.`;
+    case 'bookedlate': return `Booked for ${fmtShort(anchorDate(item.booked))} — ${status.lateDays} day${status.lateDays===1?'':'s'} later than the usual due date.`;
+    case 'booknow': return `Due ${fmtShort(status.due)}. Inside the ${status.leadDays}-day booking window — time to call.`;
+    case 'ontrack': return `Due ${fmtShort(status.due)}. Nothing to do yet.`;
+    case 'asneeded': return `No fixed cadence — seen on an as-needed basis.`;
+  }
+  return '';
+}
+
+/* ================= GAUGE ================= */
+function renderGauge(item, status){
+  if (status.state === 'asneeded') return '';
+  const lastVisit = status.lastVisit, due = status.due;
+  const cycle = daysBetween(lastVisit, due);
+  if (cycle <= 0) return '';
+
+  const bookedDate = item.booked ? anchorDate(item.booked) : null;
+  const refDate = bookedDate || TODAY;
+  const isOverdueLike = refDate > due;
+
+  const colorVar = status.state==='overdue' ? 'var(--critical)'
+                  : status.state==='didyougo' ? 'var(--warn)'
+                  : status.state==='bookedlate' ? 'var(--info)'
+                  : status.state==='booked' ? 'var(--accent)'
+                  : status.state==='booknow' ? 'var(--warn)'
+                  : 'var(--soft-ink)';
+  const hatchColor = status.state==='overdue' ? '#A32B22'
+                  : status.state==='didyougo' ? '#B26A00'
+                  : status.state==='bookedlate' ? '#2C5C8A' : '#A32B22';
+
+  let fillPct, tickPct, hatchStart, hatchEnd, leftLabel, midLabel, rightLabel;
+  leftLabel = fmtShort(lastVisit);
+
+  if (isOverdueLike){
+    const span = daysBetween(lastVisit, refDate);
+    const dueFrac = Math.max(0, Math.min(1, cycle/span));
+    tickPct = dueFrac*100;
+    fillPct = dueFrac*100;
+    hatchStart = dueFrac*100;
+    hatchEnd = 100;
+    const overDays = daysBetween(due, refDate);
+    midLabel = `${overDays}d over`;
+    rightLabel = status.state==='overdue' ? 'today' : fmtShort(refDate);
+  } else {
+    const elapsed = Math.max(0, daysBetween(lastVisit, refDate));
+    fillPct = Math.max(0, Math.min(100, (elapsed/cycle)*100));
+    const bookNowPoint = Math.max(0, Math.min(100, ((cycle-status.leadDays)/cycle)*100));
+    tickPct = bookNowPoint;
+    hatchStart = null;
+    const leftDays = daysBetween(refDate, due);
+    midLabel = leftDays>=0 ? `${leftDays}d left` : `${-leftDays}d over`;
+    rightLabel = fmtShort(due);
+  }
+
+  return `
+    <div class="gauge">
+      <div class="gauge-track">
+        <div class="gauge-fill" style="width:${fillPct}%; background:${colorVar};"></div>
+        ${hatchStart!==null ? `<div class="gauge-hatch" style="left:${hatchStart}%; width:${hatchEnd-hatchStart}%; --hc:${hatchColor};"></div>` : ''}
+        <div class="gauge-tick" style="left:calc(${tickPct}% - 1px);"></div>
+      </div>
+      <div class="gauge-labels mono">
+        <span>${leftLabel}</span>
+        <span class="mid">${midLabel}</span>
+        <span>${rightLabel}</span>
+      </div>
+    </div>`;
+}
+
+/* ================= DATA PREP ================= */
+function computedItems(){
+  return DATA.items.map(item=>{
+    const status = computeStatus(item);
+    const badges = computeBadges(item, status);
+    return {item, status, badges};
+  });
+}
+function openActionsFor(itemId){
+  return DATA.actions.filter(a=>a.parentId===itemId && !a.done);
+}
+function doneActionsFor(itemId){
+  return DATA.actions.filter(a=>a.parentId===itemId && a.done);
+}
+function visitsFor(itemId){
+  return DATA.visits.filter(v=>v.itemId===itemId).sort((a,b)=> anchorDate(b.date)-anchorDate(a.date));
+}
+
+/* ================= RENDER: NOW TAB ================= */
+function renderNow(){
+  const all = computedItems();
+  const withinCal = [];
+  const overdue = [];
+  const booknow = [];
+  const comingUp = [];
+
+  all.forEach(ci=>{
+    const {status} = ci;
+    if (status.snoozed){ comingUp.push(ci); return; }
+    if (status.state==='didyougo'){ withinCal.push(ci); return; }
+    if (status.state==='booked' || status.state==='bookedlate'){
+      const bd = anchorDate(ci.item.booked);
+      if (daysBetween(TODAY, bd) <= 2 && daysBetween(TODAY,bd) >= 0){ withinCal.push(ci); return; }
+      comingUp.push(ci); return;
+    }
+    if (status.state==='overdue'){ overdue.push(ci); return; }
+    if (status.state==='booknow'){ booknow.push(ci); return; }
+    comingUp.push(ci);
+  });
+
+  overdue.sort((a,b)=> b.status.overdueDays - a.status.overdueDays);
+  booknow.sort((a,b)=> daysBetween(TODAY,a.status.due) - daysBetween(TODAY,b.status.due));
+  comingUp.sort((a,b)=>{
+    if (a.status.state==='asneeded' && b.status.state!=='asneeded') return 1;
+    if (b.status.state==='asneeded' && a.status.state!=='asneeded') return -1;
+    if (!a.status.due) return 1;
+    if (!b.status.due) return -1;
+    return a.status.due - b.status.due;
+  });
+
+  const overdueCount = overdue.length + withinCal.filter(ci=>ci.status.state==='didyougo').length + booknow.length;
+
+  let html = '';
+  html += group('Happening now', withinCal);
+  html += group('Overdue', overdue);
+  html += group('Time to book', booknow);
+  html += group('Coming up', comingUp);
+
+  html += `
+    <div class="cta-card">
+      <h4>To change anything, tell Claude</h4>
+      <p>Just say it in plain language — the record updates in Google Drive and the dashboard gets republished.</p>
+      <div class="cta-ex">"I just came from the dentist"</div>
+      <div class="cta-ex">"Book the dermatólogo for Oct 15"</div>
+      <div class="cta-ex">"Mark the orzuelo referral done"</div>
+    </div>`;
+
+  document.getElementById('tab-now').innerHTML = html;
+  updateNowBadge(overdueCount);
+
+  document.querySelectorAll('#tab-now .row[data-id]').forEach(el=>{
+    el.addEventListener('click', ()=> openSheet(el.dataset.id));
+  });
+}
+
+function group(title, list){
+  if (!list.length) return '';
+  let inner = list.map(ci=>rowHTML(ci)).join('');
+  return `<div class="group">
+    <div class="group-title">${title} <span class="group-count">${list.length}</span></div>
+    ${inner}
+  </div>`;
+}
+
+function rowHTML(ci){
+  const {item, status, badges} = ci;
+  const meta = STATE_META[status.state];
+  const open = openActionsFor(item.id);
+  let previsit = '';
+  if (item.booked){
+    const bd = anchorDate(item.booked);
+    const dd = daysBetween(TODAY, bd);
+    if (dd>=0 && dd<=DATA.settings.previsitDays && open.length){
+      previsit = `<div class="previsit">Bring up at this visit: ${open.map(a=>a.title).join('; ')}</div>`;
+    }
+  }
+  return `
+    <div class="row state-${status.state} ${status.snoozed?'snoozed':''}" data-id="${item.id}">
+      <div class="row-top">
+        <div>
+          <div class="row-name">${item.name}</div>
+          <div class="row-sub">${item.doctor ? item.doctor+' · ' : ''}${item.clinic||''}</div>
+        </div>
+        <span class="chip ${meta.cls}">${status.snoozed?'Snoozed':meta.label}</span>
+      </div>
+      <div class="row-reason">${reasonText(item, status)}</div>
+      ${badges.length?`<div class="badges">${badges.map(b=>`<span class="badge ${b.cls}">${b.label}</span>`).join('')}</div>`:''}
+      ${renderGauge(item, status)}
+      ${previsit}
+    </div>`;
+}
+
+function updateNowBadge(n){
+  const el = document.getElementById('nowBadge');
+  if (n>0){ el.style.display='flex'; el.textContent = n; } else { el.style.display='none'; }
+}
+
+/* ================= RENDER: SPECIALTIES TAB ================= */
+function renderSpecialties(){
+  const all = computedItems();
+  const specialties = all.filter(ci=>ci.item.kind==='specialty');
+  const exams = all.filter(ci=>ci.item.kind==='exam');
+  const allOpen = DATA.actions.filter(a=>!a.done);
+  const allDone = DATA.actions.filter(a=>a.done);
+
+  let html = '<div class="subhead">Specialties</div>';
+  html += specialties.map(ci=>simpleRow(ci)).join('');
+
+  html += '<div class="subhead">Exams &amp; procedures</div>';
+  html += exams.length ? exams.map(ci=>simpleRow(ci)).join('') : `<div class="empty">No exams tracked.</div>`;
+
+  html += '<div class="subhead">Open action items</div>';
+  html += allOpen.length ? allOpen.map(a=>actionRow(a)).join('') : `<div class="empty">Nothing open.</div>`;
+
+  html += '<div class="subhead">Completed</div>';
+  html += allDone.length ? allDone.map(a=>actionRow(a)).join('') : `<div class="empty">Nothing completed yet.</div>`;
+
+  document.getElementById('tab-specialties').innerHTML = html;
+  document.querySelectorAll('#tab-specialties .simple-row[data-id]').forEach(el=>{
+    el.addEventListener('click', ()=> openSheet(el.dataset.id));
+  });
+}
+
+function simpleRow(ci){
+  const {item, status} = ci;
+  const meta = STATE_META[status.state];
+  return `<div class="simple-row" data-id="${item.id}">
+    <div>
+      <div class="l">${item.name}</div>
+      <div class="r">${item.doctor||'—'}</div>
+    </div>
+    <span class="chip ${meta.cls}">${meta.label}</span>
+  </div>`;
+}
+
+function actionRow(a){
+  const parent = DATA.items.find(i=>i.id===a.parentId);
+  return `<div class="simple-row">
+    <div>
+      <div class="l">${a.title}</div>
+      <div class="r">${parent?parent.name:''} · ${a.type}</div>
+    </div>
+    <span class="chip chip-outline">${a.done? 'Done' : (a.dateMode==='push'?'Needs date':'Open-ended')}</span>
+  </div>`;
+}
+
+/* ================= RENDER: HISTORY TAB ================= */
+function renderHistory(){
+  const visits = [...DATA.visits].sort((a,b)=> anchorDate(b.date)-anchorDate(a.date));
+  const byYear = {};
+  visits.forEach(v=>{
+    const y = v.date.slice(0,4);
+    (byYear[y] = byYear[y]||[]).push(v);
+  });
+  const years = Object.keys(byYear).sort((a,b)=>b-a);
+  let html = years.map(y=>{
+    const rows = byYear[y].map(v=>{
+      const item = DATA.items.find(i=>i.id===v.itemId);
+      return `<div class="visit-row">
+        <div class="visit-date mono">${fmtShort(anchorDate(v.date))}</div>
+        <div class="visit-name">${item?item.name:v.itemId}${v.doctor?' · '+v.doctor:''}</div>
+        ${v.reason?`<div class="visit-reason">${v.reason}</div>`:''}
+        ${v.amount?`<div class="visit-amount">$${v.amount.toLocaleString('en-US')} CLP</div>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="year-block"><div class="year-label mono">${y}</div>${rows}</div>`;
+  }).join('');
+  document.getElementById('tab-history').innerHTML = html || `<div class="empty">No visits logged.</div>`;
+}
+
+/* ================= RENDER: SETUP TAB ================= */
+function renderSetup(){
+  const s = DATA.settings;
+  const html = `
+    <div class="setup-card">
+      <h3>Where this record lives</h3>
+      <div class="setup-line"><span class="k">Storage</span><span class="v">${DATA.storage.kind}</span></div>
+      <div class="setup-line"><span class="k">File</span><span class="v">${DATA.storage.filename}</span></div>
+      <div class="setup-line"><span class="k">Timezone</span><span class="v">${s.tz}</span></div>
+      <div class="setup-line"><span class="k">Version</span><span class="v">${DATA.version}</span></div>
+    </div>
+
+    <div class="setup-card">
+      <h3>Booking-window rules</h3>
+      <div class="setup-line"><span class="k">Lead time</span><span class="v">¼ of cadence</span></div>
+      <div class="setup-line"><span class="k">Lead cap</span><span class="v">${s.leadCapDays} days</span></div>
+      <div class="setup-line"><span class="k">Pre-visit briefing</span><span class="v">${s.previsitDays} days before</span></div>
+      <div class="setup-line"><span class="k">Unlogged prompt</span><span class="v">after ${s.unloggedPromptMonths} mo</span></div>
+    </div>
+
+    <div class="setup-card">
+      <h3>Escalation ladder</h3>
+      <div class="setup-line"><span class="k">Outside window</span><span class="v">Silent</span></div>
+      <div class="setup-line"><span class="k">Inside window</span><span class="v">Weekly</span></div>
+      <div class="setup-line"><span class="k">Past due</span><span class="v">Every 3 days</span></div>
+      <div class="setup-line"><span class="k">30+ days past due</span><span class="v">Daily</span></div>
+      <div class="setup-line"><span class="k">Booked (on time or late)</span><span class="v">Silent</span></div>
+    </div>
+
+    <div class="setup-card">
+      <h3>Digest settings</h3>
+      <div class="setup-line"><span class="k">Digest day</span><span class="v">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][s.digestDay]||s.digestDay}</span></div>
+      <div class="setup-line"><span class="k">Digest hour</span><span class="v">${s.digestHour}:00</span></div>
+      <div class="setup-line"><span class="k">Routine channels</span><span class="v">${s.channels.routine.join(', ')}</span></div>
+      <div class="setup-line"><span class="k">Overdue channels</span><span class="v">${s.channels.overdue.join(', ')}</span></div>
+      <div class="setup-line"><span class="k">Calendar sync</span><span class="v">${s.channels.calendar}</span></div>
+    </div>
+
+    <div class="setup-card">
+      <h3>Export</h3>
+      <div class="setup-btns">
+        <button class="btn" id="copyDigest">Copy text digest</button>
+        <button class="btn" id="copyJSON">Copy full JSON</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('tab-setup').innerHTML = html;
+  document.getElementById('copyDigest').addEventListener('click', e=>copyText(buildDigest(), e.target));
+  document.getElementById('copyJSON').addEventListener('click', e=>copyText(JSON.stringify(DATA, null, 2), e.target));
+}
+
+function buildDigest(){
+  const all = computedItems();
+  const lines = [`Doctor Dashboard digest — ${fmtShort(TODAY)}`, ''];
+  const overdue = all.filter(ci=>ci.status.state==='overdue').sort((a,b)=>b.status.overdueDays-a.status.overdueDays);
+  const booknow = all.filter(ci=>ci.status.state==='booknow');
+  const didyougo = all.filter(ci=>ci.status.state==='didyougo');
+  if (didyougo.length){ lines.push('DID YOU GO?'); didyougo.forEach(ci=>lines.push(`- ${ci.item.name} (booked ${ci.item.booked})`)); lines.push(''); }
+  if (overdue.length){ lines.push('OVERDUE'); overdue.forEach(ci=>lines.push(`- ${ci.item.name}: ${ci.status.overdueDays}d past due`)); lines.push(''); }
+  if (booknow.length){ lines.push('TIME TO BOOK'); booknow.forEach(ci=>lines.push(`- ${ci.item.name}: due ${fmtShort(ci.status.due)}`)); lines.push(''); }
+  return lines.join('\n');
+}
+
+function copyText(text, btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const original = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 1600);
+  }).catch(()=>{
+    btn.textContent = 'Could not copy';
+  });
+}
+
+/* ================= BOTTOM SHEET ================= */
+function openSheet(itemId){
+  const item = DATA.items.find(i=>i.id===itemId);
+  if (!item) return;
+  const status = computeStatus(item);
+  const open = openActionsFor(itemId);
+  const done = doneActionsFor(itemId);
+  const visits = visitsFor(itemId);
+
+  let html = `
+    <h2>${item.name}</h2>
+    <div class="sub">${item.doctor||'No doctor assigned'} · ${item.clinic||'—'}</div>
+
+    <div class="sheet-section">
+      <h4>Schedule</h4>
+      <div class="kv"><span class="k">Status</span><span class="v">${STATE_META[status.state].label}</span></div>
+      <div class="kv"><span class="k">Last visit</span><span class="v mono">${item.lastVisit}</span></div>
+      ${status.due?`<div class="kv"><span class="k">Next due</span><span class="v mono">${fmtISO(status.due)}</span></div>`:''}
+      ${item.booked?`<div class="kv"><span class="k">Booked for</span><span class="v mono">${item.booked}</span></div>`:''}
+      ${item.cadenceMonths?`<div class="kv"><span class="k">Cadence</span><span class="v">${item.cadenceMonths} months ${item.cadenceConfirmed?'':'(unconfirmed)'}</span></div>`:'<div class="kv"><span class="k">Cadence</span><span class="v">As needed</span></div>'}
+    </div>
+
+    ${open.length?`<div class="sheet-section"><h4>Open items</h4>${open.map(a=>`<div class="kv"><span class="k">${a.title}</span><span class="v">${a.dateMode==='push'?'needs date':'open-ended'}</span></div>`).join('')}</div>`:''}
+
+    ${item.contact && (item.contact.phone||item.contact.email||item.contact.address||item.contact.website) ? `
+    <div class="sheet-section"><h4>Contact</h4>
+      ${item.contact.phone?`<div class="kv"><span class="k">Phone</span><span class="v">${item.contact.phone}</span></div>`:''}
+      ${item.contact.email?`<div class="kv"><span class="k">Email</span><span class="v">${item.contact.email}</span></div>`:''}
+      ${item.contact.address?`<div class="kv"><span class="k">Address</span><span class="v">${item.contact.address}</span></div>`:''}
+    </div>` : ''}
+
+    ${item.notes?`<div class="sheet-section"><h4>Notes</h4><div class="sheet-note">${item.notes}</div></div>`:''}
+
+    <div class="sheet-section">
+      <h4>Visit history</h4>
+      ${visits.length ? visits.map(v=>`
+        <div class="visit-row" style="box-shadow:none; border:1px solid var(--rules);">
+          <div class="visit-date mono">${fmtShort(anchorDate(v.date))}</div>
+          ${v.reason?`<div class="visit-reason">${v.reason}</div>`:''}
+        </div>`).join('') : '<div class="empty">No visits logged.</div>'}
+    </div>
+  `;
+  document.getElementById('sheetContent').innerHTML = html;
+  document.getElementById('sheet').classList.add('open');
+  document.getElementById('sheetBackdrop').classList.add('open');
+}
+function closeSheet(){
+  document.getElementById('sheet').classList.remove('open');
+  document.getElementById('sheetBackdrop').classList.remove('open');
+}
+document.getElementById('sheetClose').addEventListener('click', closeSheet);
+document.getElementById('sheetBackdrop').addEventListener('click', closeSheet);
+
+/* ================= TABS ================= */
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ================= THEME TOGGLE ================= */
+let dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+function applyTheme(){
+  document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+  document.getElementById('themeToggle').textContent = dark ? 'Light' : 'Dark';
+}
+document.getElementById('themeToggle').addEventListener('click', ()=>{ dark = !dark; applyTheme(); });
+applyTheme();
+
+/* ================= HEADER: SYNCED / STALE ================= */
+function initHeader(){
+  const updated = new Date(DATA.updatedAt);
+  document.getElementById('syncedLine').textContent = `Synced ${updated.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})} · ${updated.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}`;
+  const ageDays = daysBetween(anchorDate(fmtISO(updated)), TODAY);
+  document.getElementById('staleWarn').style.display = ageDays > 7 ? 'flex' : 'none';
+}
+
+/* ================= LIVE SYNC ENGINE =================
+   On load: render the embedded snapshot instantly, then fetch the
+   source-of-truth JSON from Google Drive via the Claude API + Drive
+   connector. On success, swap DATA and re-render. On slow (>6s) or
+   failed fetch, show a prominent banner so stale data is never silent. */
+
+
+
+/* ================= INIT ================= */
+loadData();
+</script>
+</body>
+</html>
