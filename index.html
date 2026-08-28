@@ -688,12 +688,33 @@ function renderNow(){
   html += group('Happening now', withinCal);
   html += group('Overdue', overdue);
   html += group('Time to book', booknow);
+
+  const needsDate = DATA.actions.filter(a=>!a.done && a.dateMode==='push');
+  if (needsDate.length){
+    html += `<div class="group">
+      <div class="group-title">Needs a date <span class="group-count">${needsDate.length}</span></div>
+      ${needsDate.map(a=>{
+        const parent = DATA.items.find(i=>i.id===a.parentId);
+        return `<div class="row state-booknow" style="border-left-color:var(--warn);">
+          <div class="row-top">
+            <div>
+              <div class="row-name">${a.title}</div>
+              <div class="row-sub">${parent?parent.name+' · ':''}${a.type}</div>
+            </div>
+            <span class="chip chip-outline c-warn">No date</span>
+          </div>
+          <div class="row-reason">${a.notes||'Date needed — tell Claude when this is happening.'}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
   html += group('Coming up', comingUp);
 
   html += `
     <div class="cta-card">
       <h4>To change anything, tell Claude</h4>
-      <p>Just say it in plain language — the record updates in Google Drive and the dashboard gets republished.</p>
+      <p>Just say it in plain language — updates happen instantly.</p>
       <div class="cta-ex">"I just came from the dentist"</div>
       <div class="cta-ex">"Book the dermatólogo for Oct 15"</div>
       <div class="cta-ex">"Mark the orzuelo referral done"</div>
