@@ -1,6 +1,6 @@
 {
-  "computedAt": "2026-08-31T19:54:33Z",
-  "titleSummary": "2 overdue · 2 items need a date",
+  "computedAt": "2026-08-31T20:06:33Z",
+  "titleSummary": "1 overdue · 2 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
     "overdue": {
@@ -13,13 +13,6 @@
           "clinic": "Clínica Alemana",
           "due": "2020-12-24",
           "daysOver": 2076
-        },
-        {
-          "name": "Strength Exam",
-          "doctor": "TBD",
-          "clinic": "TBD",
-          "due": "2025-08-15",
-          "daysOver": 381
         }
       ]
     },
