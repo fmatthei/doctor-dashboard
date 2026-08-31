@@ -1,0 +1,58 @@
+{
+  "computedAt": "2026-08-31T19:45:37Z",
+  "titleSummary": "1 overdue · 2 items need a date",
+  "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
+  "sections": {
+    "overdue": {
+      "label": "OVERDUE",
+      "color": "#A32B22",
+      "items": [
+        {
+          "name": "Colonoscopía",
+          "doctor": "Roque Saenz",
+          "clinic": "Clínica Alemana",
+          "due": "2020-12-24",
+          "daysOver": 2076
+        }
+      ]
+    },
+    "needsDate": {
+      "label": "NEEDS A DATE",
+      "color": "#B26A00",
+      "items": [
+        {
+          "title": "See an ophthalmologic surgeon for the orzuelo",
+          "notes": "Referral from Dr. Eggers.",
+          "parent": "Oftalmólogo",
+          "daysOpen": 96
+        },
+        {
+          "title": "Repeat endocrinology exams",
+          "notes": "Dr. Arteaga set a deadline — fill in the date.",
+          "parent": "Endocrinologo",
+          "daysOpen": 237
+        }
+      ]
+    },
+    "upcoming": {
+      "label": "UPCOMING",
+      "color": "#0F5C4E",
+      "items": [
+        {
+          "name": "Dermatólogo",
+          "doctor": "Walter Gubelin",
+          "clinic": "Clínica Skinmed",
+          "booked": "2026-10-06",
+          "bookedNote": "16:00, earliest slot available",
+          "daysUntil": 36,
+          "daysLate": 119
+        }
+      ]
+    }
+  },
+  "nextWindow": {
+    "name": "Cardiólogo",
+    "date": "2026-09-05",
+    "daysUntil": 5
+  }
+}
