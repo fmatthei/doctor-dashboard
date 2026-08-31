@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-08-31T19:45:37Z",
+  "computedAt": "2026-08-31T19:52:17Z",
   "titleSummary": "1 overdue · 2 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
@@ -42,10 +42,10 @@
           "name": "Dermatólogo",
           "doctor": "Walter Gubelin",
           "clinic": "Clínica Skinmed",
-          "booked": "2026-10-06",
+          "booked": "2026-10-13",
           "bookedNote": "16:00, earliest slot available",
-          "daysUntil": 36,
-          "daysLate": 119
+          "daysUntil": 43,
+          "daysLate": 126
         }
       ]
     }
