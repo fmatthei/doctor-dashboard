@@ -53,10 +53,10 @@
   },
   "dailyAlerts": [
     {
-      "triggerDate": "2026-08-31",
+      "triggerDate": "2026-09-02",
       "type": "windowOpened",
       "urgency": "new",
-      "message": "Time to book: Cardiólogo, due Dec 04 (90d left) [TEST]",
+      "message": "Time to book: Cardiólogo, due Dec 04 (93d left) [TEST]",
       "detail": "Orlando Sanhueza, Clínica Alemana"
     },
     {
