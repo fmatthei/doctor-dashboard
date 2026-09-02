@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-08-31T20:08:42Z",
+  "computedAt": "2026-09-02T14:34:02Z",
   "titleSummary": "1 overdue · 2 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
@@ -50,6 +50,62 @@
       ]
     }
   },
+  "dailyAlerts": [
+    {
+      "triggerDate": "2026-09-05",
+      "type": "windowOpened",
+      "message": "Time to book: Cardiólogo, due Dec 04",
+      "detail": "Orlando Sanhueza, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2026-09-10",
+      "type": "windowOpened",
+      "message": "Time to book: Urólogo, due Dec 09",
+      "detail": "Pablo Bernier, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2026-09-17",
+      "type": "windowOpened",
+      "message": "Time to book: Chequeo General, due Dec 16",
+      "detail": "Hernán Santibáñez, Clínica Bupa"
+    },
+    {
+      "triggerDate": "2026-10-04",
+      "type": "previsit",
+      "message": "In 2 days: Dermatólogo 16:00, Clínica Skinmed",
+      "detail": "Walter Gubelin"
+    },
+    {
+      "triggerDate": "2026-10-05",
+      "type": "previsit",
+      "message": "Tomorrow: Dermatólogo 16:00, Clínica Skinmed",
+      "detail": "Walter Gubelin"
+    },
+    {
+      "triggerDate": "2026-10-08",
+      "type": "windowOpened",
+      "message": "Time to book: Endocrinologo, due Jan 06",
+      "detail": "Eugenio Arteaga, Clínica Alcántara"
+    },
+    {
+      "triggerDate": "2027-02-26",
+      "type": "windowOpened",
+      "message": "Time to book: Oftalmólogo, due May 27",
+      "detail": "Andrés Eggers, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-05-19",
+      "type": "windowOpened",
+      "message": "Time to book: Dentista, due Aug 17",
+      "detail": "Tomás Blanco, Clínica Everest"
+    },
+    {
+      "triggerDate": "2027-09-05",
+      "type": "windowOpened",
+      "message": "Time to book: Test de Esfuerzo, due Dec 04",
+      "detail": "Orlando Sanhueza, Clínica Alemana"
+    }
+  ],
   "nextWindow": {
     "name": "Cardiólogo",
     "date": "2026-09-05",
