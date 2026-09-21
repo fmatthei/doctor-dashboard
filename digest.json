@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-09-10T18:27:35Z",
+  "computedAt": "2026-09-21T18:58:32Z",
   "titleSummary": "1 overdue · 1 to book · 2 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
@@ -12,7 +12,7 @@
           "doctor": "Roque Saenz",
           "clinic": "Clínica Alemana",
           "due": "2020-12-24",
-          "daysOver": 2086,
+          "daysOver": 2097,
           "urgency": "Severely overdue — 5.7 years without scheduling"
         }
       ]
@@ -22,11 +22,11 @@
       "color": "#B26A00",
       "items": [
         {
-          "name": "Urólogo",
-          "doctor": "Pablo Bernier",
-          "clinic": "Clínica Alemana",
-          "due": "2026-12-09",
-          "daysLeft": 90,
+          "name": "Chequeo General",
+          "doctor": "Hernán Santibáñez",
+          "clinic": "Clínica Bupa",
+          "due": "2026-12-16",
+          "daysLeft": 86,
           "urgency": "Due soon — time to start booking"
         }
       ]
@@ -39,13 +39,13 @@
           "title": "See an ophthalmologic surgeon for the orzuelo",
           "notes": "Referral from Dr. Eggers.",
           "parent": "Oftalmólogo",
-          "daysOpen": 106
+          "daysOpen": 117
         },
         {
           "title": "Repeat endocrinology exams",
           "notes": "Dr. Arteaga set a deadline — fill in the date.",
           "parent": "Endocrinologo",
-          "daysOpen": 247
+          "daysOpen": 258
         }
       ]
     },
@@ -59,34 +59,13 @@
           "clinic": "Clínica Skinmed",
           "booked": "2026-10-06",
           "bookedNote": "16:00",
-          "daysUntil": 26,
+          "daysUntil": 15,
           "daysLate": 119
         }
       ]
     }
   },
   "dailyAlerts": [
-    {
-      "triggerDate": "2026-09-10",
-      "type": "windowOpened",
-      "urgency": "new",
-      "message": "Time to book: Urólogo, due Dec 09 (90d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-09-17",
-      "type": "windowOpened",
-      "urgency": "new",
-      "message": "Time to book: Chequeo General, due Dec 16 (90d left)",
-      "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-09-17",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (83d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
     {
       "triggerDate": "2026-09-24",
       "type": "bookingReminder",
@@ -95,25 +74,11 @@
       "detail": "Hernán Santibáñez, Clínica Bupa"
     },
     {
-      "triggerDate": "2026-09-24",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (76d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2026-10-01",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
       "message": "Reminder: Chequeo General still not booked, due Dec 16 (76d left)",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-10-01",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (69d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-10-04",
@@ -138,13 +103,6 @@
     },
     {
       "triggerDate": "2026-10-08",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (62d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-10-08",
       "type": "windowOpened",
       "urgency": "new",
       "message": "Time to book: Endocrinologo, due Jan 06 (90d left)",
@@ -156,13 +114,6 @@
       "urgency": "bookingReminder",
       "message": "Reminder: Chequeo General still not booked, due Dec 16 (62d left)",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-10-15",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (55d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-10-15",
@@ -182,13 +133,6 @@
       "triggerDate": "2026-10-22",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (48d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-10-22",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
       "message": "Reminder: Endocrinologo still not booked, due Jan 06 (76d left)",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
@@ -198,13 +142,6 @@
       "urgency": "bookingReminder",
       "message": "Reminder: Chequeo General still not booked, due Dec 16 (48d left)",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-10-29",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (41d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-10-29",
@@ -224,13 +161,6 @@
       "triggerDate": "2026-11-05",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (34d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-11-05",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
       "message": "Reminder: Endocrinologo still not booked, due Jan 06 (62d left)",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
@@ -240,13 +170,6 @@
       "urgency": "bookingReminder",
       "message": "Reminder: Chequeo General still not booked, due Dec 16 (34d left)",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-11-12",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (27d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-11-12",
@@ -266,13 +189,6 @@
       "triggerDate": "2026-11-19",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (20d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-11-19",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
       "message": "Reminder: Endocrinologo still not booked, due Jan 06 (48d left)",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
@@ -287,13 +203,6 @@
       "triggerDate": "2026-11-26",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (13d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-11-26",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
       "message": "Reminder: Endocrinologo still not booked, due Jan 06 (41d left)",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
@@ -303,13 +212,6 @@
       "urgency": "bookingReminder",
       "message": "Reminder: Chequeo General still not booked, due Dec 16 (13d left)",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-12-03",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Urólogo still not booked, due Dec 09 (6d left)",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-12-03",
@@ -333,32 +235,11 @@
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
     {
-      "triggerDate": "2026-12-12",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 3d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-12-15",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 6d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2026-12-17",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
       "message": "Reminder: Endocrinologo still not booked, due Jan 06 (20d left)",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
-    },
-    {
-      "triggerDate": "2026-12-18",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 9d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-12-19",
@@ -368,25 +249,11 @@
       "detail": "Hernán Santibáñez, Clínica Bupa"
     },
     {
-      "triggerDate": "2026-12-21",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 12d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2026-12-22",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
       "message": "Overdue: Chequeo General — 6d past due. Book now.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-12-24",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 15d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-12-24",
@@ -403,25 +270,11 @@
       "detail": "Hernán Santibáñez, Clínica Bupa"
     },
     {
-      "triggerDate": "2026-12-27",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 18d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2026-12-28",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
       "message": "Overdue: Chequeo General — 12d past due. Book now.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-12-30",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 21d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2026-12-31",
@@ -438,13 +291,6 @@
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
     {
-      "triggerDate": "2027-01-02",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 24d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2027-01-03",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
@@ -452,25 +298,11 @@
       "detail": "Hernán Santibáñez, Clínica Bupa"
     },
     {
-      "triggerDate": "2027-01-05",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 27d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2027-01-06",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
       "message": "Overdue: Chequeo General — 21d past due. Book now.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2027-01-08",
-      "type": "overdueEscalation",
-      "urgency": "overdueEscalation",
-      "message": "Overdue: Urólogo — 30d past due. Book now.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2027-01-09",
@@ -509,13 +341,6 @@
     },
     {
       "triggerDate": "2027-01-15",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 37d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2027-01-15",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
       "message": "Overdue: Endocrinologo — 9d past due. Book now.",
@@ -543,13 +368,6 @@
       "detail": "Hernán Santibáñez, Clínica Bupa"
     },
     {
-      "triggerDate": "2027-01-22",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 44d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
       "triggerDate": "2027-01-24",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
@@ -569,13 +387,6 @@
       "urgency": "overdueWeekly",
       "message": "Still overdue: Chequeo General — 44d past due, no action taken.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2027-01-29",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 51d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2027-01-30",
@@ -600,13 +411,6 @@
     },
     {
       "triggerDate": "2027-02-05",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 58d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2027-02-05",
       "type": "overdueEscalation",
       "urgency": "overdueEscalation",
       "message": "Overdue: Endocrinologo — 30d past due. Book now.",
@@ -618,13 +422,6 @@
       "urgency": "overdueWeekly",
       "message": "Still overdue: Chequeo General — 58d past due, no action taken.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2027-02-12",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 65d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2027-02-12",
@@ -644,13 +441,6 @@
       "triggerDate": "2027-02-19",
       "type": "overdueWeekly",
       "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 72d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2027-02-19",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
       "message": "Still overdue: Endocrinologo — 44d past due, no action taken.",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
@@ -660,13 +450,6 @@
       "urgency": "overdueWeekly",
       "message": "Still overdue: Chequeo General — 72d past due, no action taken.",
       "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2027-02-26",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 79d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
     },
     {
       "triggerDate": "2027-02-26",
@@ -691,13 +474,6 @@
     },
     {
       "triggerDate": "2027-03-05",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: Urólogo — 86d past due, no action taken.",
-      "detail": "Pablo Bernier, Clínica Alemana"
-    },
-    {
-      "triggerDate": "2027-03-05",
       "type": "bookingReminder",
       "urgency": "bookingReminder",
       "message": "Reminder: Oftalmólogo still not booked, due May 27 (83d left)",
@@ -708,6 +484,41 @@
       "type": "overdueWeekly",
       "urgency": "overdueWeekly",
       "message": "Still overdue: Endocrinologo — 58d past due, no action taken.",
+      "detail": "Eugenio Arteaga, Clínica Alcántara"
+    },
+    {
+      "triggerDate": "2027-03-12",
+      "type": "overdueWeekly",
+      "urgency": "overdueWeekly",
+      "message": "Still overdue: Chequeo General — 86d past due, no action taken.",
+      "detail": "Hernán Santibáñez, Clínica Bupa"
+    },
+    {
+      "triggerDate": "2027-03-12",
+      "type": "bookingReminder",
+      "urgency": "bookingReminder",
+      "message": "Reminder: Oftalmólogo still not booked, due May 27 (76d left)",
+      "detail": "Andrés Eggers, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-03-12",
+      "type": "overdueWeekly",
+      "urgency": "overdueWeekly",
+      "message": "Still overdue: Endocrinologo — 65d past due, no action taken.",
+      "detail": "Eugenio Arteaga, Clínica Alcántara"
+    },
+    {
+      "triggerDate": "2027-03-19",
+      "type": "bookingReminder",
+      "urgency": "bookingReminder",
+      "message": "Reminder: Oftalmólogo still not booked, due May 27 (69d left)",
+      "detail": "Andrés Eggers, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-03-19",
+      "type": "overdueWeekly",
+      "urgency": "overdueWeekly",
+      "message": "Still overdue: Endocrinologo — 72d past due, no action taken.",
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
     {
@@ -730,11 +541,18 @@
       "urgency": "new",
       "message": "Time to book: Test de Esfuerzo, due Dec 04 (90d left)",
       "detail": "Orlando Sanhueza, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-09-10",
+      "type": "windowOpened",
+      "urgency": "new",
+      "message": "Time to book: Urólogo, due Dec 09 (90d left)",
+      "detail": "Pablo Bernier, Clínica Alemana"
     }
   ],
   "nextWindow": {
-    "name": "Chequeo General",
-    "date": "2026-09-17",
-    "daysUntil": 7
+    "name": "Endocrinologo",
+    "date": "2026-10-08",
+    "daysUntil": 17
   }
 }
