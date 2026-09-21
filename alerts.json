@@ -1,5 +1,5 @@
 {
-  "computedAt": "2026-09-21T18:58:32Z",
+  "computedAt": "2026-09-21T19:02:55Z",
   "titleSummary": "1 overdue · 1 to book · 2 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
@@ -37,7 +37,7 @@
       "items": [
         {
           "title": "See an ophthalmologic surgeon for the orzuelo",
-          "notes": "Referral from Dr. Eggers.",
+          "notes": "Referral from Dr. Eggers. Recommended surgeons: Torres, Inzulza, or Montecinos — all at Clínica Alemana.",
           "parent": "Oftalmólogo",
           "daysOpen": 117
         },
