@@ -1,6 +1,6 @@
 {
-  "computedAt": "2026-09-21T19:11:42Z",
-  "titleSummary": "2 overdue · 1 to book · 1 items need a date",
+  "computedAt": "2026-10-08T15:31:36Z",
+  "titleSummary": "3 overdue · 2 to book · 1 items need a date",
   "dashboardUrl": "https://fmatthei.github.io/doctor-dashboard/",
   "sections": {
     "overdue": {
@@ -12,15 +12,23 @@
           "doctor": "Roque Saenz",
           "clinic": "Clínica Alemana",
           "due": "2020-12-24",
-          "daysOver": 2097,
-          "urgency": "Severely overdue — 5.7 years without scheduling"
+          "daysOver": 2114,
+          "urgency": "Severely overdue — 5.8 years without scheduling"
+        },
+        {
+          "name": "Dermatólogo",
+          "doctor": "Walter Gubelin",
+          "clinic": "Clínica Skinmed",
+          "due": "2026-06-09",
+          "daysOver": 121,
+          "urgency": "Critically overdue — flagged for 4 months with no action"
         },
         {
           "name": "See an ophthalmologic surgeon for the orzuelo",
           "doctor": "Torres / Inzulza / Montecinos",
           "clinic": "Clínica Alemana",
           "due": "2026-07-27",
-          "daysOver": 56,
+          "daysOver": 73,
           "urgency": "Significantly overdue — 2 months without booking"
         }
       ]
@@ -34,7 +42,15 @@
           "doctor": "Hernán Santibáñez",
           "clinic": "Clínica Bupa",
           "due": "2026-12-16",
-          "daysLeft": 86,
+          "daysLeft": 69,
+          "urgency": "Due soon — time to start booking"
+        },
+        {
+          "name": "Endocrinologo",
+          "doctor": "Eugenio Arteaga",
+          "clinic": "Clínica Alcántara",
+          "due": "2027-01-06",
+          "daysLeft": 90,
           "urgency": "Due soon — time to start booking"
         }
       ]
@@ -47,76 +63,12 @@
           "title": "Repeat endocrinology exams",
           "notes": "Dr. Arteaga set a deadline — fill in the date.",
           "parent": "Endocrinologo",
-          "daysOpen": 258
-        }
-      ]
-    },
-    "upcoming": {
-      "label": "UPCOMING",
-      "color": "#0F5C4E",
-      "items": [
-        {
-          "name": "Dermatólogo",
-          "doctor": "Walter Gubelin",
-          "clinic": "Clínica Skinmed",
-          "booked": "2026-10-06",
-          "bookedNote": "16:00",
-          "daysUntil": 15,
-          "daysLate": 119
+          "daysOpen": 275
         }
       ]
     }
   },
   "dailyAlerts": [
-    {
-      "triggerDate": "2026-09-23",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: See an ophthalmologic surgeon for the orzuelo — 58d past due, no action taken.",
-      "detail": "Recommended: Torres, Inzulza, or Montecinos — Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-09-24",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Chequeo General still not booked, due Dec 16 (83d left)",
-      "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-09-30",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: See an ophthalmologic surgeon for the orzuelo — 65d past due, no action taken.",
-      "detail": "Recommended: Torres, Inzulza, or Montecinos — Clínica Alemana"
-    },
-    {
-      "triggerDate": "2026-10-01",
-      "type": "bookingReminder",
-      "urgency": "bookingReminder",
-      "message": "Reminder: Chequeo General still not booked, due Dec 16 (76d left)",
-      "detail": "Hernán Santibáñez, Clínica Bupa"
-    },
-    {
-      "triggerDate": "2026-10-04",
-      "type": "previsit",
-      "urgency": "previsit",
-      "message": "In 2 days: Dermatólogo 16:00, Clínica Skinmed",
-      "detail": "Walter Gubelin"
-    },
-    {
-      "triggerDate": "2026-10-05",
-      "type": "previsit",
-      "urgency": "previsit",
-      "message": "Tomorrow: Dermatólogo 16:00, Clínica Skinmed",
-      "detail": "Walter Gubelin"
-    },
-    {
-      "triggerDate": "2026-10-07",
-      "type": "overdueWeekly",
-      "urgency": "overdueWeekly",
-      "message": "Still overdue: See an ophthalmologic surgeon for the orzuelo — 72d past due, no action taken.",
-      "detail": "Recommended: Torres, Inzulza, or Montecinos — Clínica Alemana"
-    },
     {
       "triggerDate": "2026-10-08",
       "type": "bookingReminder",
@@ -559,6 +511,34 @@
       "detail": "Eugenio Arteaga, Clínica Alcántara"
     },
     {
+      "triggerDate": "2027-03-26",
+      "type": "bookingReminder",
+      "urgency": "bookingReminder",
+      "message": "Reminder: Oftalmólogo still not booked, due May 27 (62d left)",
+      "detail": "Andrés Eggers, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-03-26",
+      "type": "overdueWeekly",
+      "urgency": "overdueWeekly",
+      "message": "Still overdue: Endocrinologo — 79d past due, no action taken.",
+      "detail": "Eugenio Arteaga, Clínica Alcántara"
+    },
+    {
+      "triggerDate": "2027-04-02",
+      "type": "bookingReminder",
+      "urgency": "bookingReminder",
+      "message": "Reminder: Oftalmólogo still not booked, due May 27 (55d left)",
+      "detail": "Andrés Eggers, Clínica Alemana"
+    },
+    {
+      "triggerDate": "2027-04-02",
+      "type": "overdueWeekly",
+      "urgency": "overdueWeekly",
+      "message": "Still overdue: Endocrinologo — 86d past due, no action taken.",
+      "detail": "Eugenio Arteaga, Clínica Alcántara"
+    },
+    {
       "triggerDate": "2027-05-19",
       "type": "windowOpened",
       "urgency": "new",
@@ -588,8 +568,8 @@
     }
   ],
   "nextWindow": {
-    "name": "Endocrinologo",
-    "date": "2026-10-08",
-    "daysUntil": 17
+    "name": "Oftalmólogo",
+    "date": "2027-02-26",
+    "daysUntil": 141
   }
 }
