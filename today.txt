@@ -1,0 +1,2 @@
+2026-10-29|bookingReminder|Reminder: Chequeo General still not booked, due Dec 16 (48d left)|Hernán Santibáñez, Clínica Bupa
+2026-10-29|bookingReminder|Reminder: Endocrinologo still not booked, due Jan 06 (69d left)|Eugenio Arteaga, Clínica Alcántara
