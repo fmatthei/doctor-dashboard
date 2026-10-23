@@ -4,5 +4,5 @@ OVERDUE|See an ophthalmologic surgeon for the orzuelo|Torres / Inzulza / Monteci
 TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 — 54 days left
 TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 75 days left
 NEEDSDATE|Repeat endocrinology exams|Dr. Arteaga set a deadline — fill in the date.|Open 290 days (Endocrinologo)
-UPCOMING|Dermatólogo|Walter Gubelin, Clínica Skinmed|2026-10-23, 12:00 (in 0 days) (136d late)
+UPCOMING|Dermatólogo|Walter Gubelin, Clínica Skinmed|2026-11-17, Mole removal (in 25 days)
 NEXTWINDOW|Oftalmólogo|2027-02-26|in 126 days
