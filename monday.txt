@@ -1,9 +1,9 @@
-TITLE|2 overdue · 2 to book · 2 items need a date
-OVERDUE|Colonoscopía|Roque Saenz, Clínica Alemana|Due 2020-12-24 — 2129 days past due. Severely overdue — 5.8 years without scheduling
-OVERDUE|See an ophthalmologic surgeon for the orzuelo|Torres / Inzulza / Montecinos, Clínica Alemana|Due 2026-07-27 — 88 days past due. Significantly overdue — 3 months without booking
-TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 — 54 days left
-TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 75 days left
-NEEDSDATE|Repeat endocrinology exams|Dr. Arteaga set a deadline — fill in the date.|Open 290 days (Endocrinologo)
-NEEDSDATE|Confirm last COVID vaccine date|Once confirmed, update lastVisit and set cadenceMonths to 12.|Open 0 days (Vacuna COVID)
-UPCOMING|Dermatólogo|Walter Gubelin, Clínica Skinmed|2026-11-17, Mole removal (in 25 days)
-NEXTWINDOW|Vacuna Influenza|2026-12-20|in 58 days
+TITLE|3 overdue · 2 to book · 1 items need a date
+OVERDUE|Colonoscopía|Roque Saenz, Clínica Alemana|Due 2020-12-24 — 2132 days past due. Severely overdue — 5.8 years without scheduling
+OVERDUE|Vacuna COVID|TBD, Any clinic|Due 2024-05-18 — 891 days past due. Severely overdue — 2.4 years without scheduling
+OVERDUE|See an ophthalmologic surgeon for the orzuelo|Torres / Inzulza / Montecinos, Clínica Alemana|Due 2026-07-27 — 91 days past due. Critically overdue — flagged for 3 months with no action
+TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 — 51 days left
+TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 72 days left
+NEEDSDATE|Repeat endocrinology exams|Dr. Arteaga set a deadline — fill in the date.|Open 293 days (Endocrinologo)
+UPCOMING|Dermatólogo|Walter Gubelin, Clínica Skinmed|2026-11-17, Mole removal (in 22 days)
+NEXTWINDOW|Vacuna Influenza|2026-12-20|in 55 days
