@@ -1,6 +1,5 @@
-TITLE|3 overdue · 2 to book · 1 items need a date
+TITLE|2 overdue · 2 to book · 1 items need a date
 OVERDUE|Colonoscopía|Roque Saenz, Clínica Alemana|Due 2020-12-24 — 2132 days past due. Severely overdue — 5.8 years without scheduling
-OVERDUE|Vacuna COVID|TBD, Any clinic|Due 2024-05-18 — 891 days past due. Severely overdue — 2.4 years without scheduling
 OVERDUE|See an ophthalmologic surgeon for the orzuelo|Torres / Inzulza / Montecinos, Clínica Alemana|Due 2026-07-27 — 91 days past due. Critically overdue — flagged for 3 months with no action
 TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 — 51 days left
 TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 72 days left
