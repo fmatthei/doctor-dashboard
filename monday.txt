@@ -6,4 +6,4 @@ TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 �
 TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 72 days left
 NEEDSDATE|Repeat endocrinology exams|Dr. Arteaga set a deadline — fill in the date.|Open 293 days (Endocrinologo)
 UPCOMING|Dermatólogo|Walter Gubelin, Clínica Skinmed|2026-11-17, Mole removal (in 22 days)
-NEXTWINDOW|Vacuna Influenza|2026-12-20|in 55 days
+NEXTWINDOW|Vacuna Influenza|2027-02-18|in 115 days
