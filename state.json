@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T21:26:53.211Z",
+  "updatedAt": "2026-11-17T21:42:47.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -526,8 +526,8 @@
     }
   ],
   "storage": {
-    "kind": "google-drive",
-    "filename": "doctor-dashboard-state.json",
-    "note": "Source of truth. The published artifact is a generated view of this file."
+    "kind": "github-repo",
+    "filename": "fmatthei/doctor-dashboard/state.json",
+    "note": "Source of truth. A GitHub Action recomputes today.txt and monday.txt daily and on every change."
   }
 }
