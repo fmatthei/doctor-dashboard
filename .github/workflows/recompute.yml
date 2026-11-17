@@ -22,13 +22,20 @@ jobs:
     env:
       TZ: America/Santiago
       GIST_ID: e456b8a03df2c92ddec907ea977466bc
-      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Fetch state.json
         # The Gist API returns the latest revision; the raw URL can be served stale from cache.
-        run: gh api "gists/$GIST_ID" --jq '.files["state.json"].content' > /tmp/state.json
+        # Falls back to the raw URL if the unauthenticated API is rate-limited.
+        run: |
+          if curl -fsSL "https://api.github.com/gists/$GIST_ID" | jq -er '.files["state.json"].content' > /tmp/state.json; then
+            echo "Read state via Gist API"
+          else
+            curl -fsSL "https://gist.githubusercontent.com/fmatthei/$GIST_ID/raw/state.json?t=$(date +%s)" -o /tmp/state.json
+            echo "Read state via raw URL (fallback)"
+          fi
+          jq -e '.items | length > 0' /tmp/state.json > /dev/null
 
       - name: Recompute (test mode prints only)
         if: ${{ github.event_name != 'schedule' && inputs.mode != 'live' }}
