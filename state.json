@@ -1,0 +1,533 @@
+{
+  "version": 1,
+  "updatedAt": "2026-11-17T21:26:53.211Z",
+  "settings": {
+    "tz": "America/Santiago",
+    "leadFraction": 0.25,
+    "leadCapDays": 90,
+    "digestDay": 1,
+    "digestHour": 10,
+    "dailyWhenEscalated": true,
+    "unloggedPromptMonths": 1,
+    "previsitDays": 2,
+    "ageNagDays": 30,
+    "channels": {
+      "routine": [
+        "push",
+        "reminder"
+      ],
+      "overdue": [
+        "push",
+        "reminder",
+        "email"
+      ],
+      "calendar": "booked-and-deadlines"
+    }
+  },
+  "items": [
+    {
+      "id": "chequeo",
+      "kind": "specialty",
+      "name": "Chequeo General",
+      "spec": "Broncopulmonar",
+      "clinic": "Clínica Bupa",
+      "doctor": "Hernán Santibáñez",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": true,
+      "lastVisit": "2025-12-16",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "Head doctor / GP. Coordinates the broader exam panel. Exam results mail: “Diciembre 2025 - Exámenes Chequeo Fdo Matthei Rubio” (11 Dec 2025)."
+    },
+    {
+      "id": "dentista",
+      "kind": "specialty",
+      "name": "Dentista",
+      "spec": "Odontología",
+      "clinic": "Clínica Everest",
+      "doctor": "Tomás Blanco",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": true,
+      "lastVisit": "2026-08-17",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "dermatologo",
+      "kind": "specialty",
+      "name": "Dermatólogo",
+      "spec": "Dermatología",
+      "clinic": "Clínica Skinmed",
+      "doctor": "Walter Gubelin",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": true,
+      "lastVisit": "2026-10-23",
+      "booked": "2026-11-18",
+      "bookedNote": "Control post mole removal",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "urologo",
+      "kind": "specialty",
+      "name": "Urólogo",
+      "spec": "Urología",
+      "clinic": "Clínica Alemana",
+      "doctor": "Pablo Bernier",
+      "cadenceMonths": 24,
+      "cadenceConfirmed": true,
+      "lastVisit": "2025-12-09",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "oftalmologo",
+      "kind": "specialty",
+      "name": "Oftalmólogo",
+      "spec": "Oftalmología",
+      "clinic": "Clínica Alemana",
+      "doctor": "Andrés Eggers",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": false,
+      "lastVisit": "2026-05-27",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "endocrinologo",
+      "kind": "specialty",
+      "name": "Endocrinologo",
+      "spec": "Endocrinología",
+      "clinic": "Clínica Alcántara",
+      "doctor": "Eugenio Arteaga",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": false,
+      "lastVisit": "2026-01-06",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "Referred by Santibáñez — one level came back high in the chequeo panel."
+    },
+    {
+      "id": "cardiologo",
+      "kind": "specialty",
+      "name": "Cardiólogo",
+      "spec": "Cardiología",
+      "clinic": "Clínica Alemana",
+      "doctor": "Orlando Sanhueza",
+      "cadenceMonths": 24,
+      "cadenceConfirmed": false,
+      "lastVisit": "2025-12-04",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "Referred by Santibáñez to establish a baseline."
+    },
+    {
+      "id": "gastroenterologo",
+      "kind": "specialty",
+      "name": "Gastroenterólogo",
+      "spec": "Gastroenterología",
+      "clinic": "Clínica Alemana",
+      "doctor": "Roque Saenz",
+      "cadenceMonths": null,
+      "cadenceConfirmed": true,
+      "lastVisit": "2015-12-24",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "No routine cadence — seen as needed. Visits driven by colonoscopy schedule."
+    },
+    {
+      "id": "otorrino",
+      "kind": "specialty",
+      "name": "Otorrinolaringólogo",
+      "spec": "Otorrinolaringología",
+      "clinic": "Clínica Bupa",
+      "doctor": "Juan Velasco",
+      "cadenceMonths": null,
+      "cadenceConfirmed": true,
+      "lastVisit": "2026-08-12",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "No routine cadence — seen as needed."
+    },
+    {
+      "id": "traumatologo",
+      "kind": "specialty",
+      "name": "Traumatólogo",
+      "spec": "Traumatología",
+      "clinic": "Clínica Meds",
+      "doctor": "Camilo Azar",
+      "cadenceMonths": null,
+      "cadenceConfirmed": true,
+      "lastVisit": "2026-07-27",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "No routine cadence — seen as needed. Knee: cartilage lesion & bone oedema under control."
+    },
+    {
+      "id": "colonoscopia",
+      "kind": "exam",
+      "name": "Colonoscopía",
+      "spec": "Gastroenterología",
+      "parentId": "gastroenterologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Roque Saenz",
+      "cadenceMonths": 60,
+      "cadenceConfirmed": false,
+      "lastVisit": "2015-12-24",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "test-esfuerzo",
+      "kind": "exam",
+      "name": "Test de Esfuerzo",
+      "spec": "Cardiología",
+      "parentId": "cardiologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Orlando Sanhueza",
+      "cadenceMonths": 24,
+      "cadenceConfirmed": false,
+      "lastVisit": "2025-12-04",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": null,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": ""
+    },
+    {
+      "id": "vacuna-influenza",
+      "kind": "exam",
+      "name": "Vacuna Influenza",
+      "spec": "Vacunación",
+      "parentId": null,
+      "clinic": "",
+      "doctor": "",
+      "cadenceMonths": 12,
+      "cadenceConfirmed": true,
+      "lastVisit": "2026-03-20",
+      "booked": null,
+      "bookedNote": "",
+      "followUp": null,
+      "snoozeUntil": null,
+      "leadDaysOverride": 30,
+      "contact": {
+        "phone": "",
+        "email": "",
+        "address": "",
+        "website": ""
+      },
+      "notes": "Annual. Usually March-May in Chile."
+    }
+  ],
+  "actions": [
+    {
+      "id": "a-orzuelo",
+      "title": "See an ophthalmologic surgeon for the orzuelo",
+      "type": "referral",
+      "parentId": "oftalmologo",
+      "due": "2026-07-27",
+      "dateMode": "push",
+      "created": "2026-05-27",
+      "done": null,
+      "notes": "Referral from Dr. Eggers. Recommended surgeons: Torres, Inzulza, or Montecinos — all at Clínica Alemana."
+    },
+    {
+      "id": "a-endo-exams",
+      "title": "Repeat endocrinology exams",
+      "type": "exam",
+      "parentId": "endocrinologo",
+      "due": null,
+      "dateMode": "push",
+      "created": "2026-01-06",
+      "done": null,
+      "notes": "Dr. Arteaga set a deadline — fill in the date."
+    },
+    {
+      "id": "a-implants",
+      "title": "Check on dental implants for two teeth",
+      "type": "task",
+      "parentId": "dentista",
+      "due": null,
+      "dateMode": "ok",
+      "created": "2026-08-17",
+      "done": null,
+      "notes": "Raise at the next dental visit."
+    }
+  ],
+  "visits": [
+    {
+      "id": "v-influenza-2026",
+      "date": "2026-03-20",
+      "itemId": "vacuna-influenza",
+      "clinic": "",
+      "doctor": "",
+      "reason": "Vacuna influenza 2026.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "amount": null,
+      "clinic": "Clínica Skinmed",
+      "date": "2026-11-17",
+      "doctor": "Walter Gubelin",
+      "id": "v-derm-2026-11-17",
+      "itemId": "dermatologo",
+      "notes": "Procedure — does not reset the cadence (lastVisit stays 2026-10-23).",
+      "reason": "Mole removal."
+    },
+    {
+      "id": "v-derm-2026-10-23",
+      "date": "2026-10-23",
+      "itemId": "dermatologo",
+      "clinic": "Clínica Skinmed",
+      "doctor": "Walter Gubelin",
+      "reason": "Control periódico. Mole removal scheduled for Nov 17.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v1",
+      "date": "2026-08-17",
+      "itemId": "dentista",
+      "clinic": "Clínica Everest",
+      "doctor": "Tomás Blanco",
+      "reason": "Flúor + “Higiene Invierno”. Diagnóstico odontológico, Rx panorámica, scanner intraoral, detartraje supragingival y pulido coronario, instrucción de higiene.",
+      "amount": 46890,
+      "notes": ""
+    },
+    {
+      "id": "v2",
+      "date": "2026-08-12",
+      "itemId": "otorrino",
+      "clinic": "Clínica Bupa",
+      "doctor": "Juan Velasco",
+      "reason": "Gripe viral.",
+      "amount": 43181,
+      "notes": ""
+    },
+    {
+      "id": "v3",
+      "date": "2026-07-27",
+      "itemId": "traumatologo",
+      "clinic": "Clínica Meds",
+      "doctor": "Camilo Azar",
+      "reason": "Control rodilla — lesión cartílago y edema óseo.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v4",
+      "date": "2026-05-27",
+      "itemId": "oftalmologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Andrés Eggers",
+      "reason": "Control.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v5",
+      "date": "2026-01-06",
+      "itemId": "endocrinologo",
+      "clinic": "Clínica Alcántara",
+      "doctor": "Eugenio Arteaga",
+      "reason": "Un nivel había salido alto en exámenes de chequeo con Santibáñez.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v6",
+      "date": "2025-12-16",
+      "itemId": "chequeo",
+      "clinic": "Clínica Bupa",
+      "doctor": "Hernán Santibáñez",
+      "reason": "Espirometría, Rx dorsal, ecotomografía pelviana, Rx tórax AP-lateral, ecotomografía abdomen, otros.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v7",
+      "date": "2025-12-09",
+      "itemId": "urologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Pablo Bernier",
+      "reason": "Chequeo.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v8",
+      "date": "2025-12-04",
+      "itemId": "cardiologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Orlando Sanhueza",
+      "reason": "Test de esfuerzo.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v8b",
+      "date": "2025-12-04",
+      "itemId": "test-esfuerzo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Orlando Sanhueza",
+      "reason": "Test de esfuerzo.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v9",
+      "date": "2025-06-09",
+      "itemId": "dermatologo",
+      "clinic": "Clínica Skinmed",
+      "doctor": "Walter Gubelin",
+      "reason": "Consulta periódica / revisión uña pie derecho.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v10",
+      "date": "2024-12-02",
+      "itemId": "dermatologo",
+      "clinic": "Clínica Skinmed",
+      "doctor": "Walter Gubelin",
+      "reason": "Mapeo digital.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v11",
+      "date": "2015-12-24",
+      "itemId": "gastroenterologo",
+      "clinic": "Clínica Alemana",
+      "doctor": "Roque Saenz",
+      "reason": "Colonoscopía.",
+      "amount": null,
+      "notes": ""
+    },
+    {
+      "id": "v11b",
+      "date": "2015-12-24",
+      "itemId": "colonoscopia",
+      "clinic": "Clínica Alemana",
+      "doctor": "Roque Saenz",
+      "reason": "Colonoscopía.",
+      "amount": null,
+      "notes": ""
+    }
+  ],
+  "storage": {
+    "kind": "google-drive",
+    "filename": "doctor-dashboard-state.json",
+    "note": "Source of truth. The published artifact is a generated view of this file."
+  }
+}
