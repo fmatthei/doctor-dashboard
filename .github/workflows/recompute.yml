@@ -2,9 +2,13 @@ name: Recompute alert files
 
 # Rebuilds today.txt and monday.txt from state.json with the real current date,
 # so the scheduled Claude tasks never read stale files.
+# Runs every morning, and right away whenever state.json changes.
 on:
   schedule:
     - cron: "17 11 * * *"   # ~08:17 Santiago (summer) / 07:17 (winter), before the 10:00 Claude tasks
+  push:
+    branches: [main]
+    paths: [state.json, scripts/recompute.py]
   workflow_dispatch:
     inputs:
       mode:
@@ -16,36 +20,30 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: recompute
+  cancel-in-progress: false
+
 jobs:
   recompute:
     runs-on: ubuntu-latest
     env:
       TZ: America/Santiago
-      GIST_ID: e456b8a03df2c92ddec907ea977466bc
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch state.json
-        # The Gist API returns the latest revision; the raw URL can be served stale from cache.
-        # Falls back to the raw URL if the unauthenticated API is rate-limited.
-        run: |
-          if curl -fsSL "https://api.github.com/gists/$GIST_ID" | jq -er '.files["state.json"].content' > /tmp/state.json; then
-            echo "Read state via Gist API"
-          else
-            curl -fsSL "https://gist.githubusercontent.com/fmatthei/$GIST_ID/raw/state.json?t=$(date +%s)" -o /tmp/state.json
-            echo "Read state via raw URL (fallback)"
-          fi
-          jq -e '.items | length > 0' /tmp/state.json > /dev/null
+      - name: Validate state.json
+        run: jq -e '.items | length > 0' state.json > /dev/null
 
       - name: Recompute (test mode prints only)
-        if: ${{ github.event_name != 'schedule' && inputs.mode != 'live' }}
-        run: python3 scripts/recompute.py /tmp/state.json /tmp/out --schema
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode != 'live' }}
+        run: python3 scripts/recompute.py state.json /tmp/out --schema
 
       - name: Recompute and commit
-        if: ${{ github.event_name == 'schedule' || inputs.mode == 'live' }}
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'live' }}
         run: |
-          python3 scripts/recompute.py /tmp/state.json .
+          python3 scripts/recompute.py state.json .
           git config user.name "dashboard-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add today.txt monday.txt
-          git diff --cached --quiet && echo "No changes" || (git commit -m "Daily recompute $(date +%F)" && git push)
+          git diff --cached --quiet && echo "No changes" || (git commit -m "Daily recompute $(date +%F)" && git pull --rebase -q && git push)
