@@ -3,6 +3,8 @@ name: Recompute alert files
 # Rebuilds today.txt and monday.txt from state.json with the real current date,
 # so the scheduled Claude tasks never read stale files.
 on:
+  schedule:
+    - cron: "17 11 * * *"   # ~08:17 Santiago (summer) / 07:17 (winter), before the 10:00 Claude tasks
   workflow_dispatch:
     inputs:
       mode:
@@ -27,11 +29,11 @@ jobs:
         run: curl -fsSL "$STATE_URL?t=$(date +%s)" -o /tmp/state.json
 
       - name: Recompute (test mode prints only)
-        if: ${{ inputs.mode != 'live' }}
+        if: ${{ github.event_name != 'schedule' && inputs.mode != 'live' }}
         run: python3 scripts/recompute.py /tmp/state.json /tmp/out --schema
 
       - name: Recompute and commit
-        if: ${{ inputs.mode == 'live' }}
+        if: ${{ github.event_name == 'schedule' || inputs.mode == 'live' }}
         run: |
           python3 scripts/recompute.py /tmp/state.json .
           git config user.name "dashboard-bot"
