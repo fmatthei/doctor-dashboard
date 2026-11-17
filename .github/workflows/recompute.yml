@@ -1,0 +1,40 @@
+name: Recompute alert files
+
+# Rebuilds today.txt and monday.txt from state.json with the real current date,
+# so the scheduled Claude tasks never read stale files.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "test = print only, live = commit files"
+        default: test
+        type: choice
+        options: [test, live]
+
+permissions:
+  contents: write
+
+jobs:
+  recompute:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Santiago
+      STATE_URL: https://gist.githubusercontent.com/fmatthei/e456b8a03df2c92ddec907ea977466bc/raw/state.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch state.json
+        run: curl -fsSL "$STATE_URL?t=$(date +%s)" -o /tmp/state.json
+
+      - name: Recompute (test mode prints only)
+        if: ${{ inputs.mode != 'live' }}
+        run: python3 scripts/recompute.py /tmp/state.json /tmp/out --schema
+
+      - name: Recompute and commit
+        if: ${{ inputs.mode == 'live' }}
+        run: |
+          python3 scripts/recompute.py /tmp/state.json .
+          git config user.name "dashboard-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add today.txt monday.txt
+          git diff --cached --quiet && echo "No changes" || (git commit -m "Daily recompute $(date +%F)" && git push)
