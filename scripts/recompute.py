@@ -128,7 +128,7 @@ def build(state, t):
         elif s in ("booked", "bookedlate"):
             b = d(item["booked"])
             extra = ", ".join(x for x in (booked_time(item), booked_note(item)) if x)
-            info = f"{b}{', ' + extra if extra else ''} (in {(b - t).days} days)" if b > t else f"{b}{', ' + extra if extra else ''} (today)"
+            info = f"{b}{', ' + extra if extra else ''} (in {(b - t).days} day{'' if (b - t).days == 1 else 's'})" if b > t else f"{b}{', ' + extra if extra else ''} (today)"
             upcoming.append(((b - t).days, f"UPCOMING|{item['name']}|{who(item)}|{info}"))
         elif s == "ontrack":
             opens = st["due"] - dt.timedelta(days=st["lead"])
