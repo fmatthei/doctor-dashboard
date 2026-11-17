@@ -21,12 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: America/Santiago
-      STATE_URL: https://gist.githubusercontent.com/fmatthei/e456b8a03df2c92ddec907ea977466bc/raw/state.json
+      GIST_ID: e456b8a03df2c92ddec907ea977466bc
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Fetch state.json
-        run: curl -fsSL "$STATE_URL?t=$(date +%s)" -o /tmp/state.json
+        # The Gist API returns the latest revision; the raw URL can be served stale from cache.
+        run: gh api "gists/$GIST_ID" --jq '.files["state.json"].content' > /tmp/state.json
 
       - name: Recompute (test mode prints only)
         if: ${{ github.event_name != 'schedule' && inputs.mode != 'live' }}

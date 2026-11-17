@@ -189,8 +189,11 @@ def build(state, t):
                 where = item.get("clinic") or ""
                 msg = f"Tomorrow: {item['name']}{' ' + tm if tm else ''}{', ' + where if where else ''}"
                 alerts.append(f"{day}|previsit|{msg}|{item.get('doctor') or '-'}")
-            if b and b == day and day != t:
-                pass
+            if b and b == day:
+                note = booked_note(item)
+                where = item.get("clinic") or ""
+                msg = f"Today: {item['name']}{' — ' + note if note else ''}{', ' + where if where else ''}"
+                alerts.append(f"{day}|dayof|{msg}|{item.get('doctor') or '-'}")
             if st["state"] == "booknow" and not b and day.weekday() == REMINDER_WEEKDAY:
                 left = (st["due"] - day).days
                 alerts.append(f"{day}|bookingReminder|Reminder: {item['name']} still not booked, due {fmt_short(st['due'])} ({left}d left)|{who(item)}")
