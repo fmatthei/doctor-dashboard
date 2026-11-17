@@ -136,13 +136,21 @@ def build(state, t):
 
     needs = []
     for a in actions:
-        if a.get("done") or a.get("dateMode") != "push":
+        if a.get("done"):
             continue
         parent = by_id.get(a.get("parentId"), {})
-        info = f"Open {(t - d(a['created'])).days} days" if a.get("created") else "Open"
-        if parent.get("name"):
-            info += f" ({parent['name']})"
-        needs.append(f"NEEDSDATE|{a.get('title')}|{a.get('notes') or 'Date needed'}|{info}")
+        due = d(a.get("due"))
+        if due and due < t:
+            # An open action with a past deadline counts as overdue (e.g. the orzuelo referral).
+            days = (t - due).days
+            doctor = a.get("doctor") or parent.get("doctor")
+            detail = a.get("notes") or ", ".join(x for x in (doctor, parent.get("clinic")) if x) or "-"
+            overdue.append((days, f"OVERDUE|{a.get('title')}|{detail}|Due {due} — {days} days past due ({human_span(days)})"))
+        elif not due and a.get("dateMode") == "push":
+            info = f"Open {(t - d(a['created'])).days} days" if a.get("created") else "Open"
+            if parent.get("name"):
+                info += f" ({parent['name']})"
+            needs.append(f"NEEDSDATE|{a.get('title')}|{a.get('notes') or 'Date needed'}|{info}")
 
     overdue.sort(key=lambda x: -x[0])
     tobook.sort(key=lambda x: x[0])
@@ -198,6 +206,7 @@ def schema(state):
             keys |= set(x.keys())
         out[k + "Keys"] = sorted(keys)
     out["settings"] = state.get("settings")
+    out["actions"] = state.get("actions")
     out["itemsBooked"] = [
         {k: v for k, v in i.items() if k in ("name", "booked", "lastVisit", "cadenceMonths", "followUp", "leadDaysOverride")}
         | {k: v for k, v in i.items() if "book" in k.lower() or "time" in k.lower() or "note" in k.lower()}
