@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-18T18:23:52.000Z",
+  "updatedAt": "2026-11-18T18:39:16.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -81,18 +81,19 @@
       "cadenceMonths": 12,
       "cadenceConfirmed": true,
       "lastVisit": "2026-10-23",
-      "booked": "2026-11-18",
-      "bookedNote": "Control post mole removal",
+      "booked": "2026-11-23",
+      "bookedNote": "Control post mole removal (2nd)",
       "followUp": null,
       "snoozeUntil": null,
       "leadDaysOverride": null,
       "contact": {
-        "phone": "",
+        "phone": "WhatsApp +569 9 509 3495 / +569 7 589 4619",
         "email": "",
-        "address": "",
+        "address": "Del Inca 4446, Of. 305, Las Condes (estacionamiento por Américo Vespucio Sur 430)",
         "website": ""
       },
-      "notes": ""
+      "notes": "",
+      "bookedTime": "15:20"
     },
     {
       "id": "urologo",
@@ -378,6 +379,16 @@
       "reason": "Vacuna influenza 2026.",
       "amount": null,
       "notes": ""
+    },
+    {
+      "amount": null,
+      "clinic": "Clínica Skinmed",
+      "date": "2026-11-18",
+      "doctor": "Walter Gubelin",
+      "id": "v-derm-2026-11-18",
+      "itemId": "dermatologo",
+      "notes": "Control — does not reset the cadence (lastVisit stays 2026-10-23).",
+      "reason": "Control post mole removal. Todo ok; nuevo control el 23 nov."
     },
     {
       "amount": null,
