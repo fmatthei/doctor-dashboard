@@ -5,7 +5,9 @@ name: Recompute alert files
 # Runs every morning, and right away whenever state.json changes.
 on:
   schedule:
-    - cron: "17 11 * * *"   # ~08:17 Santiago (summer) / 07:17 (winter), before the 10:00 Claude tasks
+    # Two times as a safety net: GitHub can delay or skip scheduled runs.
+    - cron: "41 6 * * *"    # ~03:41 Santiago (summer)
+    - cron: "17 11 * * *"   # ~08:17 Santiago (summer), before the 10:00 Claude tasks
   push:
     branches: [main]
     paths: [state.json, scripts/recompute.py]
