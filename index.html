@@ -699,7 +699,31 @@ function renderNow(){
   html += group('Overdue', overdue);
   html += group('Time to book', booknow);
 
-  const needsDate = DATA.actions.filter(a=>!a.done && a.dateMode==='push');
+  const bookedActions = DATA.actions.filter(a=>!a.done && a.booked)
+    .sort((a,b)=> anchorDate(a.booked) - anchorDate(b.booked));
+  if (bookedActions.length){
+    html += `<div class="group">
+      <div class="group-title">Booked <span class="group-count">${bookedActions.length}</span></div>
+      ${bookedActions.map(a=>{
+        const parent = DATA.items.find(i=>i.id===a.parentId);
+        const bd = anchorDate(a.booked);
+        const passed = bd < TODAY;
+        const who = [a.doctor || (parent&&parent.doctor), a.clinic || (parent&&parent.clinic)].filter(Boolean).join(' · ');
+        return `<div class="row state-${passed?'didyougo':'booked'}" style="border-left-color:var(--${passed?'warn':'accent'});">
+          <div class="row-top">
+            <div>
+              <div class="row-name">${a.title}</div>
+              <div class="row-sub">${who}</div>
+            </div>
+            <span class="chip chip-filled ${passed?'c-warn':'c-accent'}">${passed?'Did you go?':'Booked'}</span>
+          </div>
+          <div class="row-reason">${passed ? `Booked for ${fmtShort(bd)}${a.bookedTime?' at '+a.bookedTime:''}, which has passed. Did the visit happen?` : `Booked for ${fmtShort(bd)}${a.bookedTime?' at '+a.bookedTime:''}.`}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }
+
+  const needsDate = DATA.actions.filter(a=>!a.done && !a.booked && a.dateMode==='push');
   if (needsDate.length){
     html += `<div class="group">
       <div class="group-title">Needs a date <span class="group-count">${needsDate.length}</span></div>
@@ -825,7 +849,7 @@ function actionRow(a){
       <div class="l">${a.title}</div>
       <div class="r">${parent?parent.name:''} · ${a.type}</div>
     </div>
-    <span class="chip chip-outline">${a.done? 'Done' : (a.dateMode==='push'?'Needs date':'Open-ended')}</span>
+    <span class="chip chip-outline">${a.done? 'Done' : (a.booked?'Booked':(a.dateMode==='push'?'Needs date':'Open-ended'))}</span>
   </div>`;
 }
 
@@ -949,7 +973,7 @@ function openSheet(itemId){
       ${item.cadenceMonths?`<div class="kv"><span class="k">Cadence</span><span class="v">${item.cadenceMonths} months ${item.cadenceConfirmed?'':'(unconfirmed)'}</span></div>`:'<div class="kv"><span class="k">Cadence</span><span class="v">As needed</span></div>'}
     </div>
 
-    ${open.length?`<div class="sheet-section"><h4>Open items</h4>${open.map(a=>`<div class="kv"><span class="k">${a.title}</span><span class="v">${a.dateMode==='push'?'needs date':'open-ended'}</span></div>`).join('')}</div>`:''}
+    ${open.length?`<div class="sheet-section"><h4>Open items</h4>${open.map(a=>`<div class="kv"><span class="k">${a.title}</span><span class="v">${a.booked?'booked '+a.booked+(a.bookedTime?' '+a.bookedTime:''):(a.dateMode==='push'?'needs date':'open-ended')}</span></div>`).join('')}</div>`:''}
 
     ${item.contact && (item.contact.phone||item.contact.email||item.contact.address||item.contact.website) ? `
     <div class="sheet-section"><h4>Contact</h4>

@@ -105,6 +105,18 @@ def booked_note(item):
     return None
 
 
+def action_as_booking(a, parent):
+    """View a booked action with the same fields a booked item has."""
+    return {
+        "name": a.get("title"),
+        "doctor": a.get("doctor") or parent.get("doctor"),
+        "clinic": a.get("clinic") or parent.get("clinic"),
+        "booked": a.get("booked"),
+        "bookedTime": a.get("bookedTime"),
+        "bookedNote": a.get("bookedNote"),
+    }
+
+
 def build(state, t):
     items = state.get("items", [])
     actions = state.get("actions", [])
@@ -140,7 +152,18 @@ def build(state, t):
             continue
         parent = by_id.get(a.get("parentId"), {})
         due = d(a.get("due"))
-        if due and due < t:
+        if a.get("booked"):
+            # A booked action (e.g. the orzuelo surgeon visit) is upcoming, not overdue.
+            ba = action_as_booking(a, parent)
+            b = d(ba["booked"])
+            if b < t:
+                didyougo.append(f"DIDYOUGO|{ba['name']}|{who(ba)}|Booked {b} — did the visit happen?")
+            else:
+                extra = ", ".join(x for x in (booked_time(ba), booked_note(ba)) if x)
+                n = (b - t).days
+                when = "today" if n == 0 else f"in {n} day{'' if n == 1 else 's'}"
+                upcoming.append((n, f"UPCOMING|{ba['name']}|{who(ba)}|{b}{', ' + extra if extra else ''} ({when})"))
+        elif due and due < t:
             # An open action with a past deadline counts as overdue (e.g. the orzuelo referral).
             days = (t - due).days
             doctor = a.get("doctor") or parent.get("doctor")
@@ -177,6 +200,10 @@ def build(state, t):
         monday.append(f"NEXTWINDOW|{name}|{opens}|in {(opens - t).days} days")
 
     # ---------- today.txt (next 7 days) ----------
+    for a in actions:
+        if a.get("booked") and not a.get("done"):
+            ba = action_as_booking(a, by_id.get(a.get("parentId"), {}))
+            rows.append((ba, {"state": "booked", "snoozed": False, "due": None, "lead": None}))
     alerts = []
     for off in range(7):
         day = t + dt.timedelta(days=off)
@@ -192,7 +219,8 @@ def build(state, t):
             if b and b == day:
                 note = booked_note(item)
                 where = item.get("clinic") or ""
-                msg = f"Today: {item['name']}{' — ' + note if note else ''}{', ' + where if where else ''}"
+                tm = booked_time(item)
+                msg = f"Today: {item['name']}{' ' + tm if tm else ''}{' — ' + note if note else ''}{', ' + where if where else ''}"
                 alerts.append(f"{day}|dayof|{msg}|{item.get('doctor') or '-'}")
             if st["state"] == "booknow" and not b and day.weekday() == REMINDER_WEEKDAY:
                 left = (st["due"] - day).days
