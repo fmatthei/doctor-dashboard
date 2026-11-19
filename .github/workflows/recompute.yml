@@ -10,7 +10,7 @@ on:
     - cron: "17 11 * * *"   # ~08:17 Santiago (summer), before the 10:00 Claude tasks
   push:
     branches: [main]
-    paths: [state.json, scripts/recompute.py]
+    paths: [state.json, scripts/**, .github/workflows/recompute.yml]
   workflow_dispatch:
     inputs:
       mode:
