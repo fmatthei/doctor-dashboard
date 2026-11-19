@@ -47,5 +47,5 @@ jobs:
           python3 scripts/recompute.py state.json .
           git config user.name "dashboard-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add today.txt monday.txt
+          git add -A today.txt monday.txt alerts digest
           git diff --cached --quiet && echo "No changes" || (git commit -m "Daily recompute $(date +%F)" && git pull --rebase -q && git push)

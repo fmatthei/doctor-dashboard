@@ -246,6 +246,33 @@ def schema(state):
     return json.dumps(out, ensure_ascii=False, indent=1)
 
 
+HORIZON_DAYS = 14  # dated files are pre-computed this far ahead, so a skipped daily run is harmless
+
+
+def with_count(lines):
+    """Prefix COUNT|n so the scheduled task can tell a complete fetch from a partial one."""
+    return "\n".join([f"COUNT|{len(lines)}"] + lines) + "\n"
+
+
+def write(path, text):
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def prune(folder, t):
+    # Remove dated files for days that have passed.
+    if not os.path.isdir(folder):
+        return
+    for name in os.listdir(folder):
+        stem = name[:-4] if name.endswith(".txt") else ""
+        try:
+            if dt.date.fromisoformat(stem) < t:
+                os.remove(os.path.join(folder, name))
+        except ValueError:
+            pass
+
+
 def main():
     state_path, out_dir = sys.argv[1], sys.argv[2]
     with open(state_path, encoding="utf-8") as f:
@@ -253,14 +280,30 @@ def main():
     if "--schema" in sys.argv:
         print(schema(state))
     t = today()
+
+    # Legacy files (kept for reference / the dashboard footer).
     today_txt, monday_txt = build(state, t)
-    os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "today.txt"), "w", encoding="utf-8") as f:
-        f.write(today_txt)
-    with open(os.path.join(out_dir, "monday.txt"), "w", encoding="utf-8") as f:
-        f.write(monday_txt)
+    write(os.path.join(out_dir, "today.txt"), today_txt)
+    write(os.path.join(out_dir, "monday.txt"), monday_txt)
+
+    alerts_dir = os.path.join(out_dir, "alerts")
+    digest_dir = os.path.join(out_dir, "digest")
+    prune(alerts_dir, t)
+    prune(digest_dir, t)
     print(f"--- computed for {t} ---")
-    print("=== today.txt ===\n" + today_txt + "=== monday.txt ===\n" + monday_txt)
+    for off in range(HORIZON_DAYS):
+        day = t + dt.timedelta(days=off)
+        day_alerts, day_digest = build(state, day)
+        # alerts/YYYY-MM-DD.txt: only that day's alerts (COUNT|0 when none).
+        lines = [l for l in day_alerts.splitlines() if l.startswith(f"{day}|")]
+        write(os.path.join(alerts_dir, f"{day}.txt"), with_count(lines))
+        print(f"alerts/{day}.txt: {len(lines)} alert(s)")
+        # digest/YYYY-MM-DD.txt: the weekly digest as of each upcoming Monday.
+        if day.weekday() == 0:
+            dl = day_digest.splitlines()
+            write(os.path.join(digest_dir, f"{day}.txt"), with_count(dl))
+            print(f"digest/{day}.txt: {len(dl)} line(s)")
+    print("=== today's alert file ===\n" + open(os.path.join(alerts_dir, f"{t}.txt"), encoding="utf-8").read())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,4 @@
+COUNT|3
+2026-11-19|bookingReminder|Reminder: Chequeo General still not booked, due Dec 16 (27d left)|Hernán Santibáñez, Clínica Bupa
+2026-11-19|bookingReminder|Reminder: Endocrinologo still not booked, due Jan 06 (48d left)|Eugenio Arteaga, Clínica Alcántara
+2026-11-19|previsit|Tomorrow: See an ophthalmologic surgeon for the orzuelo 15:30, Clínica Alemana La Dehesa|Nelson Inzulza

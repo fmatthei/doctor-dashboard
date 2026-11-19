@@ -1,0 +1,9 @@
+COUNT|8
+TITLE|1 overdue · 2 to confirm · 2 to book · 1 need a date
+OVERDUE|Colonoscopía|Roque Saenz, Clínica Alemana|Due 2020-12-24 — 2167 days past due (5.9 years)
+DIDYOUGO|Dermatólogo|Walter Gubelin, Clínica Skinmed|Booked 2026-11-23 — did the visit happen?
+DIDYOUGO|See an ophthalmologic surgeon for the orzuelo|Nelson Inzulza, Clínica Alemana La Dehesa|Booked 2026-11-20 — did the visit happen?
+TIMETOBOOK|Chequeo General|Hernán Santibáñez, Clínica Bupa|Due 2026-12-16 — 16 days left
+TIMETOBOOK|Endocrinologo|Eugenio Arteaga, Clínica Alcántara|Due 2027-01-06 — 37 days left
+NEEDSDATE|Repeat endocrinology exams|Dr. Arteaga set a deadline — fill in the date.|Open 328 days (Endocrinologo)
+NEXTWINDOW|Vacuna Influenza|2027-02-18|in 80 days
