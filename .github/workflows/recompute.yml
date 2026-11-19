@@ -45,7 +45,19 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'live' }}
         run: |
           python3 scripts/recompute.py state.json .
+          python3 scripts/status.py . ok
           git config user.name "dashboard-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A today.txt monday.txt alerts digest
-          git diff --cached --quiet && echo "No changes" || (git commit -m "Daily recompute $(date +%F)" && git pull --rebase -q && git push)
+          git add -A today.txt monday.txt alerts digest status.txt
+          git commit -m "Daily recompute $(date +%F)" && git pull --rebase -q && git push
+
+      - name: Record the failure in status.txt
+        # Runs only if a step above failed, so the next email can say so.
+        if: ${{ failure() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'live') }}
+        run: |
+          git reset -q --hard
+          git config user.name "dashboard-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull -q --rebase || true
+          python3 scripts/status.py . FAILED "recompute failed, GitHub run ${{ github.run_id }}"
+          git add status.txt && git commit -m "Status: recompute failed $(date +%F)" && git push
