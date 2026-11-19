@@ -1,0 +1,10 @@
+name: Diag Pages fetch
+on: workflow_dispatch
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          for u in doctor-dashboard/alerts/2026-11-20.txt doctor-dashboard/alerts/2026-11-21.txt doctor-dashboard/digest/2026-11-23.txt alfa147-dashboard/digest/2026-11-24.txt; do
+            echo "=== $u"; curl -sS -w "HTTP %{http_code}\n" "https://fmatthei.github.io/$u?t=$(date +%s)"
+          done
