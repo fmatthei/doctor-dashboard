@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-18T18:39:16.000Z",
+  "updatedAt": "2026-11-20T19:46:45.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -338,13 +338,24 @@
       "due": "2026-07-27",
       "dateMode": "push",
       "created": "2026-05-27",
-      "done": null,
-      "notes": "Referral from Dr. Eggers. Recommended surgeons: Torres, Inzulza, or Montecinos — all at Clínica Alemana.",
+      "done": "2026-11-20",
+      "notes": "Referral from Dr. Eggers. Recommended surgeons: Torres, Inzulza, or Montecinos — all at Clínica Alemana. Seen by Dr. Nelson Inzulza on 2026-11-20: lesion looks benign, no urgency to remove; removal is elective (Fernando's decision).",
       "booked": "2026-11-20",
       "bookedTime": "15:30",
       "doctor": "Nelson Inzulza",
       "clinic": "Clínica Alemana La Dehesa",
       "bookedNote": ""
+    },
+    {
+      "id": "a-orzuelo-decision",
+      "title": "Decide whether to remove the orzuelo (waiting for quote)",
+      "type": "task",
+      "parentId": "oftalmologo",
+      "due": null,
+      "dateMode": "ok",
+      "created": "2026-11-20",
+      "done": null,
+      "notes": "Dr. Inzulza (Clínica Alemana La Dehesa) gave the medical order; quote (presupuesto) requested. Benign, elective — no deadline."
     },
     {
       "id": "a-endo-exams",
@@ -439,6 +450,16 @@
       "reason": "Control rodilla — lesión cartílago y edema óseo.",
       "amount": null,
       "notes": ""
+    },
+    {
+      "id": "v-oft-2026-11-20",
+      "date": "2026-11-20",
+      "itemId": "oftalmologo",
+      "clinic": "Clínica Alemana La Dehesa",
+      "doctor": "Nelson Inzulza",
+      "reason": "Evaluación orzuelo (cirujano oftalmológico): lesión de aspecto benigno, sin urgencia; extirpación electiva. Entregó orden médica; presupuesto solicitado.",
+      "amount": null,
+      "notes": "Referral visit — does not reset the Oftalmólogo cadence (lastVisit stays 2026-05-27)."
     },
     {
       "id": "v4",
