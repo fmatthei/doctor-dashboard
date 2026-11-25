@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-20T19:46:45.000Z",
+  "updatedAt": "2026-11-25T19:35:36.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -354,8 +354,24 @@
       "due": null,
       "dateMode": "ok",
       "created": "2026-11-20",
+      "done": "2026-11-25",
+      "notes": "Dr. Inzulza (Clínica Alemana La Dehesa) gave the medical order; quote (presupuesto) requested. Benign, elective — no deadline. Decided 2026-11-25: going ahead with removal."
+    },
+    {
+      "id": "a-orzuelo-surgery",
+      "title": "Orzuelo removal",
+      "type": "procedure",
+      "parentId": "oftalmologo",
+      "due": null,
+      "dateMode": "ok",
+      "created": "2026-11-25",
       "done": null,
-      "notes": "Dr. Inzulza (Clínica Alemana La Dehesa) gave the medical order; quote (presupuesto) requested. Benign, elective — no deadline."
+      "notes": "Elective removal of benign lesion. No fasting required. Arrive 45 min early.",
+      "booked": "2026-11-27",
+      "bookedTime": "13:30 (llegar 12:45)",
+      "doctor": "Nelson Inzulza",
+      "clinic": "Clínica Alemana La Dehesa",
+      "bookedNote": "sin ayuno"
     },
     {
       "id": "a-endo-exams",
