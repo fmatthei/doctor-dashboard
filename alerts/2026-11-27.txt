@@ -1,1 +1,2 @@
-COUNT|0
+COUNT|1
+2026-11-27|dayof|Today: Orzuelo removal 13:30 (llegar 12:45) — sin ayuno, Clínica Alemana La Dehesa|Nelson Inzulza
