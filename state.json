@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-25T19:35:36.000Z",
+  "updatedAt": "2026-11-27T18:01:45.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -365,13 +365,26 @@
       "due": null,
       "dateMode": "ok",
       "created": "2026-11-25",
-      "done": null,
-      "notes": "Elective removal of benign lesion. No fasting required. Arrive 45 min early.",
+      "done": "2026-11-27",
+      "notes": "Elective removal of benign lesion. No fasting required. Arrive 45 min early. Done 2026-11-27.",
       "booked": "2026-11-27",
       "bookedTime": "13:30 (llegar 12:45)",
       "doctor": "Nelson Inzulza",
       "clinic": "Clínica Alemana La Dehesa",
       "bookedNote": "sin ayuno"
+    },
+    {
+      "id": "a-orzuelo-postop",
+      "title": "Post-op control, orzuelo removal (in ~2 weeks, around Dec 11)",
+      "type": "followup",
+      "parentId": "oftalmologo",
+      "due": null,
+      "dateMode": "push",
+      "created": "2026-11-27",
+      "done": null,
+      "notes": "Control with Dr. Nelson Inzulza, Clínica Alemana La Dehesa, about 2 weeks after the Nov 27 surgery. Exact date/time to confirm.",
+      "doctor": "Nelson Inzulza",
+      "clinic": "Clínica Alemana La Dehesa"
     },
     {
       "id": "a-endo-exams",
@@ -466,6 +479,16 @@
       "reason": "Control rodilla — lesión cartílago y edema óseo.",
       "amount": null,
       "notes": ""
+    },
+    {
+      "id": "v-oft-2026-11-27",
+      "date": "2026-11-27",
+      "itemId": "oftalmologo",
+      "clinic": "Clínica Alemana La Dehesa",
+      "doctor": "Nelson Inzulza",
+      "reason": "Extirpación de orzuelo (cirugía ambulatoria). Control en ~2 semanas.",
+      "amount": null,
+      "notes": "Procedure — does not reset the Oftalmólogo cadence."
     },
     {
       "id": "v-oft-2026-11-20",
