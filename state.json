@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-27T18:16:07.000Z",
+  "updatedAt": "2026-11-27T18:18:40.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -375,14 +375,14 @@
     },
     {
       "id": "a-orzuelo-postop",
-      "title": "Post-op control, orzuelo removal (in ~2 weeks, around Dec 11)",
+      "title": "Post-op control, orzuelo removal (walk-in, from ~Dec 11)",
       "type": "followup",
       "parentId": "oftalmologo",
       "due": null,
       "dateMode": "push",
       "created": "2026-11-27",
       "done": null,
-      "notes": "Control with Dr. Nelson Inzulza, Clínica Alemana La Dehesa, about 2 weeks after the Nov 27 surgery. Exact date/time to confirm.",
+      "notes": "Control with Dr. Nelson Inzulza ~2 weeks after the Nov 27 surgery. No appointment needed — walk in: CAS La Dehesa, Saturdays 9–13 h, piso 2, consulta 15; or CAS Vitacura, Mondays 15–19 h, piso 11, consulta 5. Pick the day.",
       "doctor": "Nelson Inzulza",
       "clinic": "Clínica Alemana La Dehesa"
     },
