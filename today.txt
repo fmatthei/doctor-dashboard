@@ -1,4 +1,3 @@
-2026-11-26|bookingReminder|Reminder: Chequeo General still not booked, due Dec 16 (20d left)|Hernán Santibáñez, Clínica Bupa
-2026-11-26|bookingReminder|Reminder: Endocrinologo still not booked, due Jan 06 (41d left)|Eugenio Arteaga, Clínica Alcántara
-2026-11-26|previsit|Tomorrow: Orzuelo removal 13:30 (llegar 12:45), Clínica Alemana La Dehesa|Nelson Inzulza
 2026-11-27|dayof|Today: Orzuelo removal 13:30 (llegar 12:45) — sin ayuno, Clínica Alemana La Dehesa|Nelson Inzulza
+2026-12-03|bookingReminder|Reminder: Chequeo General still not booked, due Dec 16 (13d left)|Hernán Santibáñez, Clínica Bupa
+2026-12-03|bookingReminder|Reminder: Endocrinologo still not booked, due Jan 06 (34d left)|Eugenio Arteaga, Clínica Alcántara
