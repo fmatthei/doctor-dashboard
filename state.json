@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-27T18:13:34.000Z",
+  "updatedAt": "2026-11-27T18:16:07.000Z",
   "settings": {
     "tz": "America/Santiago",
     "leadFraction": 0.25,
@@ -81,8 +81,8 @@
       "cadenceMonths": 12,
       "cadenceConfirmed": true,
       "lastVisit": "2026-10-23",
-      "booked": null,
-      "bookedNote": "",
+      "booked": "2026-12-14",
+      "bookedNote": "Control post mole removal (3rd)",
       "followUp": null,
       "snoozeUntil": null,
       "leadDaysOverride": null,
@@ -92,7 +92,8 @@
         "address": "Del Inca 4446, Of. 305, Las Condes (estacionamiento por Américo Vespucio Sur 430)",
         "website": ""
       },
-      "notes": ""
+      "notes": "",
+      "bookedTime": "15:20"
     },
     {
       "id": "urologo",
